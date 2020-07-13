@@ -83,3 +83,4 @@
 /UncoAndroidClient/lint/outputs/
 /UncoAndroidClient/lint/tmp/
 # lint/reports/
+/UncoAndroidServer/nbproject/private/
