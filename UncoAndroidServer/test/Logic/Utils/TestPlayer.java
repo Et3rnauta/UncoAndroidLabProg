@@ -4,6 +4,7 @@ import Conexion.ClientConnector;
 import Conexion.ConnectionRequestHandler;
 import Logic.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 // @author guido
 public class TestPlayer implements Runnable {
@@ -12,6 +13,7 @@ public class TestPlayer implements Runnable {
     public String answer;
     public String name;
     private ClientConnector connector;
+    private boolean isPlaying = true;
 
     public TestPlayer(String name) {
         this.name = name;
@@ -21,18 +23,21 @@ public class TestPlayer implements Runnable {
     @Override
     public void run() {
         connector.startConnection(new TestClientHandler(this));
-        synchronized (this) {
-            try {
-                wait();
-            } catch (InterruptedException ex) {
+
+        while (isPlaying) {
+            synchronized (this) {
+                try {
+                    wait();
+                } catch (InterruptedException ex) {
+                }
             }
-        }
-        String sendAnswer = "sendAnswer:(" + name + ")(" + 0 + ")(" + answer + ")";
-        serverResponse = "1".equals(connector.makeRequest(sendAnswer));
-        synchronized (this) {
-            try {
-                wait();
-            } catch (InterruptedException ex) {
+            String sendAnswer = "sendAnswer:(" + name + ")(" + 0 + ")(" + answer + ")";
+            serverResponse = "1".equals(connector.makeRequest(sendAnswer));
+            synchronized (this) {
+                try {
+                    wait();
+                } catch (InterruptedException ex) {
+                }
             }
         }
         connector.endConnection();
@@ -59,14 +64,18 @@ public class TestPlayer implements Runnable {
             switch (function.get(0)) {
                 case "setQuestion":
                     //(question)..(respuestas)..
-                    player.answer = function.get(2);
+                    Random r = new Random();
+                    player.answer = function.get(r.nextInt(4) + 2);
                     player.wake();
                     msgReturn = "";
                     break;
-                case "endQuestion":
+                case "endQuestion":                    
                     player.wake();
                     msgReturn = "";
                     break;
+                case "endGame":
+                    player.isPlaying = false;
+                    player.wake();
                 default:
                     msgReturn = "ERROR";
                     break;

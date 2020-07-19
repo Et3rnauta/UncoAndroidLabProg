@@ -52,13 +52,17 @@ public class GameServer {
     }
 
     public void endGame() {
+        String endGame = "endGame:";
+        players.forEach((player) -> {
+            player.makeRequest(endGame);
+        });
         players.forEach((player) -> {
             player.endConnection();
         });
     }
 
     int userAnswer(String userName, Integer idQuestion, String answer) {
-        int indice = playerNames.indexOf(userName);        
+        int indice = playerNames.indexOf(userName);    
         return (questions[idQuestion].isRightAns(answer)) ? 1 : 0;
     }
 
