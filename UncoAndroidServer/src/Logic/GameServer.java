@@ -11,20 +11,24 @@ public class GameServer {
     private ServerController controller;
     private ArrayList<ServerConnector> players;
     private ArrayList<String> playerNames;
+    private ArrayList<Integer> playerScores;
     private PlayerReceiver receiver;
+    private Clock clock;
 
     GameServer(String[][] questions) {
-        players = new ArrayList<>();
-        playerNames = new ArrayList<>();
         this.questions = new Question[questions.length];
         for (int i = 0; i < questions.length; i++) {
             this.questions[i] = new Question(questions[i]);
         }
         controller = new ServerController();
-        receiver = new PlayerReceiver(this);
+        clock = new Clock();
     }
 
     public void openRoom() {
+        receiver = new PlayerReceiver(this);
+        players = new ArrayList<>();
+        playerNames = new ArrayList<>();
+        playerScores = new ArrayList<>();
         controller.startServer();
         new Thread(receiver, "PlayerReceiver").start();
     }
@@ -34,36 +38,57 @@ public class GameServer {
         controller.endServer();
     }
 
-    public void playRound(int questionRound) {        
+    public void playRound(int questionRound) {
         players.forEach((player) -> {
             player.makeRequest(questions[questionRound].toRequest());
         });
 
-//        Clock.sleep(1);
-//        String startQuestion = "startQuestion:";
-//        players.forEach((player) -> {
-//            player.makeRequest(startQuestion);
-//        });
-        Clock.sleep(3);
-        String endQuestion = "endQuestion:";
+        Clock.sleep(1);
+        String startQuestion = "startQuestion:";
         players.forEach((player) -> {
-            player.makeRequest(endQuestion);
+            player.makeRequest(startQuestion);
+        });
+
+        clock.startCountdown(questions[questionRound].time, true);
+        Clock.sleep(questions[questionRound].time);
+
+        players.forEach((player) -> {
+            player.makeRequest("endQuestion:");
         });
     }
 
     public void endGame() {
-        String endGame = "endGame:";
         players.forEach((player) -> {
-            player.makeRequest(endGame);
+            player.makeRequest("endGame:");
         });
         players.forEach((player) -> {
             player.endConnection();
         });
     }
 
+    /**
+     * Usuario envia la respuesta seleccionada.
+     *
+     * @param userName Nombre del usuario
+     * @param idQuestion Id de la pregunta a responder
+     * @param answer Respuesta seleccionada
+     * @return un puntaje X si es correcta, 0 si es incorrecta, o -1 si encontro
+     * un error
+     */
     int userAnswer(String userName, Integer idQuestion, String answer) {
-        int indice = playerNames.indexOf(userName);    
-        return (questions[idQuestion].isRightAns(answer)) ? 1 : 0;
+        int indice = playerNames.indexOf(userName);
+        if (idQuestion >= questions.length || idQuestion < 0) {
+            return -1;
+        }
+
+        int score = 0;
+        if (questions[idQuestion].isRightAns(answer)) {
+            score = clock.getCountdownTime() * 100 / questions[idQuestion].time;
+        }
+        //TODO: revisar
+        playerScores.add(playerScores.get(indice) + score, indice);
+        playerScores.remove(indice + 1);
+        return score;
     }
 
     private class PlayerReceiver implements Runnable {
@@ -82,9 +107,17 @@ public class GameServer {
                 ServerConnector player = controller.recieveClient();
                 if (player != null) {
                     player.startConnection(new GameServerHandler(game));
+
+                    String playerNameAux = player.makeRequest("getName:");
+                    if ("".equals(playerNameAux)) {
+                        playerNameAux = "player " + i;
+                        player.makeRequest("setName:(" + playerNameAux + ")");
+                        i++;
+                    }
+
                     players.add(player);
-                    playerNames.add("player " + i);
-                    i++;
+                    playerNames.add(playerNameAux);
+                    playerScores.add(0);
                 }
             }
         }

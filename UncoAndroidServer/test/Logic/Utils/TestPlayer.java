@@ -12,6 +12,9 @@ public class TestPlayer implements Runnable {
     public boolean serverResponse;
     public String answer;
     public String name;
+    public int gameTime, questionTime, questionScore;
+    public Clock clock = new Clock();
+
     private ClientConnector connector;
     private boolean isPlaying = true;
 
@@ -20,10 +23,15 @@ public class TestPlayer implements Runnable {
         connector = new ClientConnector("localhost");
     }
 
+    public TestPlayer() {
+        this.name = "";
+        connector = new ClientConnector("localhost");
+    }
+
     @Override
     public void run() {
         connector.startConnection(new TestClientHandler(this));
-
+        int i = 0;
         while (isPlaying) {
             synchronized (this) {
                 try {
@@ -31,14 +39,18 @@ public class TestPlayer implements Runnable {
                 } catch (InterruptedException ex) {
                 }
             }
-            String sendAnswer = "sendAnswer:(" + name + ")(" + 0 + ")(" + answer + ")";
-            serverResponse = "1".equals(connector.makeRequest(sendAnswer));
+            Clock.sleep(new Random().nextInt(10) + 1);
+            questionTime = clock.getCountdownTime();
+            String sendAnswer = "sendAnswer:(" + name + ")(" + i + ")(" + answer + ")";
+            questionScore = Integer.decode(connector.makeRequest(sendAnswer));
+            serverResponse = !(0 == questionScore || -1 == questionScore);
             synchronized (this) {
                 try {
                     wait();
                 } catch (InterruptedException ex) {
                 }
             }
+            i++;
         }
         connector.endConnection();
     }
@@ -60,22 +72,31 @@ public class TestPlayer implements Runnable {
         @Override
         public String handle(String msgReq) {
             ArrayList<String> function = decodeMessage(msgReq);
-            String msgReturn;
+            String msgReturn = "";
             switch (function.get(0)) {
                 case "setQuestion":
                     //(question)..(respuestas)..
                     Random r = new Random();
                     player.answer = function.get(r.nextInt(4) + 2);
-                    player.wake();
-                    msgReturn = "";
+                    player.gameTime = Integer.decode(function.get(6));
                     break;
-                case "endQuestion":                    
+                case "startQuestion":
+                    player.clock.startCountdown(player.gameTime, false);
                     player.wake();
-                    msgReturn = "";
+                    break;
+                case "endQuestion":
+                    player.wake();
                     break;
                 case "endGame":
                     player.isPlaying = false;
                     player.wake();
+                    break;
+                case "getName":
+                    msgReturn = player.name;
+                    break;
+                case "setName":
+                    player.name = function.get(1);
+                    break;
                 default:
                     msgReturn = "ERROR";
                     break;
