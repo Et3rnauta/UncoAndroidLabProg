@@ -36,11 +36,7 @@ public class SimpleGameTest {
         System.out.println("Creating players");
         Random r = new Random();
         for (int i = 0; i < players.length; i++) {
-            if (r.nextInt(2) == 1) {
-                players[i] = new TestPlayer("testName " + i);
-            } else {
-                players[i] = new TestPlayer();
-            }
+            players[i] = new TestPlayer();
             new Thread(players[i]).start();
             Clock.sleep(1);
         }
@@ -52,7 +48,7 @@ public class SimpleGameTest {
 
     @After
     public void tearDown() {
-        game.endGame();
+        game.closeConnection();
     }
 
     @Ignore
@@ -88,18 +84,29 @@ public class SimpleGameTest {
             Clock.sleep(1);
             System.out.println("Playing round " + i);
             game.playRound(i);
-            System.out.println("Beggining Check");
+            System.out.println("Beggining Check (question score)");
             for (TestPlayer player : players) {
                 System.out.println(player.name + " starts checking");
-                if (player.answer.equals(questions[i][1])) {                    
+                if (player.answer.equals(questions[i][1])) {
                     assertTrue(player.serverResponse);
-                    assertEquals(player.questionTime * 100 / Integer.decode(questions[i][5]), player.questionScore);
-                    System.out.println(player.name + " checks true");
+                    assertEquals(player.questionTime * 100 / Integer.decode(questions[i][5]),
+                            player.questionScore, Math.ceil(100.0 / Integer.decode(questions[i][5])));
+                    
+                    System.out.println(player.name + " checks true (question score)");
+                    player.addScore(player.questionScore);
                 } else {
                     assertFalse(player.serverResponse);
-                    System.out.println(player.name + " checks false");
+                    System.out.println(player.name + " checks false (question score)");
                 }
             }
+        }
+        game.endGame();
+        Clock.sleep(2);
+        System.out.println("\nBeggining Check (gameScore)");
+        for (TestPlayer player : players) {
+            System.out.println(player.name + " starts checking");
+            assertEquals(player.scoreAcum, player.gameScore);
+            System.out.println(player.name + " checks true (gameScore)");
         }
         System.out.println("--Finish test 2");
     }
@@ -117,11 +124,11 @@ public class SimpleGameTest {
 
     public static void createQuestions() {
         //question: {question, 4 * answer, time}
-        String[] pregunta1 = {"¿Cuanto es 2 + 2?", "4", "3", "6", "5", "20"},
+        String[] pregunta1 = {"¿Cuanto es 2 + 2?", "4", "3", "6", "5", "10"},
                 pregunta2 = {"¿Cual es la capital de Argentina?",
-                    "Buenos Aires", "Neuquen", "Cipolletti", "Vaca Muerta", "30"},
+                    "Buenos Aires", "Neuquen", "Cipolletti", "Vaca Muerta", "10"},
                 pregunta3 = {"¿Cual es la mejor materia en la FAI?",
-                    "Laboratorio de Programacion", "Diseño de Base de Datos", "Analisis de Algoritmos", "Introduccion a la Computacion", "30"};
+                    "Laboratorio de Programacion", "Diseño de Base de Datos", "Analisis de Algoritmos", "Introduccion a la Computacion", "10"};
 
         questions = new String[][]{pregunta1, pregunta2, pregunta3};
     }

@@ -11,9 +11,10 @@ public class GameServer {
     private ServerController controller;
     private ArrayList<ServerConnector> players;
     private ArrayList<String> playerNames;
-    private ArrayList<Integer> playerScores;
+    private ArrayList<Integer> playerScoresAux;
     private PlayerReceiver receiver;
     private Clock clock;
+    private int[] playerScores;
 
     GameServer(String[][] questions) {
         this.questions = new Question[questions.length];
@@ -28,7 +29,7 @@ public class GameServer {
         receiver = new PlayerReceiver(this);
         players = new ArrayList<>();
         playerNames = new ArrayList<>();
-        playerScores = new ArrayList<>();
+        playerScoresAux = new ArrayList<>();
         controller.startServer();
         new Thread(receiver, "PlayerReceiver").start();
     }
@@ -61,6 +62,9 @@ public class GameServer {
         players.forEach((player) -> {
             player.makeRequest("endGame:");
         });
+    }
+    
+    public void closeConnection(){        
         players.forEach((player) -> {
             player.endConnection();
         });
@@ -77,7 +81,7 @@ public class GameServer {
      */
     int userAnswer(String userName, Integer idQuestion, String answer) {
         int indice = playerNames.indexOf(userName);
-        if (idQuestion >= questions.length || idQuestion < 0) {
+        if (indice == -1 || idQuestion >= questions.length || idQuestion < 0) {
             return -1;
         }
 
@@ -85,10 +89,22 @@ public class GameServer {
         if (questions[idQuestion].isRightAns(answer)) {
             score = clock.getCountdownTime() * 100 / questions[idQuestion].time;
         }
-        //TODO: revisar
-        playerScores.add(playerScores.get(indice) + score, indice);
-        playerScores.remove(indice + 1);
+        playerScores[indice] += score;
         return score;
+    }
+
+    /**
+     * Devuelve el puntaje total del usuario
+     * 
+     * @param userName nombre del usuario a consultar
+     * @return el puntaje del usuario o null si encontro un error
+     */
+    String getUserScore(String userName) {
+        int indice = playerNames.indexOf(userName);
+        if (indice == -1) {
+            return null;
+        }
+        return "" + playerScores[indice];
     }
 
     private class PlayerReceiver implements Runnable {
@@ -117,9 +133,10 @@ public class GameServer {
 
                     players.add(player);
                     playerNames.add(playerNameAux);
-                    playerScores.add(0);
+                    playerScoresAux.add(0);
                 }
             }
+            playerScores = new int[players.size()];
         }
 
         private void closeRoom() {

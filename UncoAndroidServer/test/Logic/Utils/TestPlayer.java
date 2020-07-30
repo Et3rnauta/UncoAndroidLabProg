@@ -12,16 +12,11 @@ public class TestPlayer implements Runnable {
     public boolean serverResponse;
     public String answer;
     public String name;
-    public int gameTime, questionTime, questionScore;
+    public int gameTime, questionTime, questionScore, gameScore, scoreAcum = 0;
     public Clock clock = new Clock();
 
     private ClientConnector connector;
     private boolean isPlaying = true;
-
-    public TestPlayer(String name) {
-        this.name = name;
-        connector = new ClientConnector("localhost");
-    }
 
     public TestPlayer() {
         this.name = "";
@@ -32,16 +27,16 @@ public class TestPlayer implements Runnable {
     public void run() {
         connector.startConnection(new TestClientHandler(this));
         int i = 0;
-        while (isPlaying) {
-            synchronized (this) {
-                try {
-                    wait();
-                } catch (InterruptedException ex) {
-                }
+        synchronized (this) {
+            try {
+                wait();
+            } catch (InterruptedException ex) {
             }
-            Clock.sleep(new Random().nextInt(10) + 1);
-            questionTime = clock.getCountdownTime();
+        }
+        while (isPlaying) {
+            Clock.sleep(new Random().nextInt(5) + 1);
             String sendAnswer = "sendAnswer:(" + name + ")(" + i + ")(" + answer + ")";
+            questionTime = clock.getCountdownTime();
             questionScore = Integer.decode(connector.makeRequest(sendAnswer));
             serverResponse = !(0 == questionScore || -1 == questionScore);
             synchronized (this) {
@@ -52,10 +47,18 @@ public class TestPlayer implements Runnable {
             }
             i++;
         }
+        String getUserScore = "getUserScore:(" + name + ")";
+        System.out.println(name + " pregunta su score final");
+        gameScore = Integer.decode(connector.makeRequest(getUserScore));
+        System.out.println(name + " recibe su score final");
         connector.endConnection();
     }
 
-    void wake() {
+    public void addScore(int score) {
+        scoreAcum += score;
+    }
+
+    public void wake() {
         synchronized (this) {
             notify();
         }
@@ -85,7 +88,6 @@ public class TestPlayer implements Runnable {
                     player.wake();
                     break;
                 case "endQuestion":
-                    player.wake();
                     break;
                 case "endGame":
                     player.isPlaying = false;

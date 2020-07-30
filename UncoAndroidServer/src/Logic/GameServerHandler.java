@@ -21,6 +21,10 @@ public class GameServerHandler extends ConnectionRequestHandler {
                 //(nombreDeUser)(numPregunta)(respuesta)
                 msgReturn = "" + game.userAnswer(function.get(1), Integer.decode(function.get(2)), function.get(3));;
                 break;
+            case "getUserScore":
+                //(nombreDeUser)
+                msgReturn = "" + game.getUserScore(function.get(1));
+                break;
             default:
                 msgReturn = "ERROR";
                 break;
