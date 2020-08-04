@@ -1,4 +1,4 @@
-package com.example.uncoandroidclient.Conexion;
+package Conexion;
 
 // @author guido
 public abstract class ConnectionRequestHandler {
