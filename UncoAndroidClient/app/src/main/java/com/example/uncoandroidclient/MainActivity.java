@@ -57,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        connector = new ClientConnector(ServerController.getIpAdress());
+        connector = new ClientConnector("127.0.0.1");
 
-        System.out.println("Your IP Address is: " + ServerController.getIpAdress());
+        //System.out.println("Your IP Address is: " + ServerController.getIpAdress());
     }
 
 
