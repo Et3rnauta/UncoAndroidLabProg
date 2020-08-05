@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            connector = new ClientConnector("192.168.0.175");
+            connector = new ClientConnector("INGRESAR IP");
             if (connector.startConnection(new TestClientHandler())) {
                 runOnUiThread(new Runnable() {
                     @Override
