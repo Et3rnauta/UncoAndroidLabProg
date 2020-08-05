@@ -1,4 +1,4 @@
-package com.example.uncoandroidclient.Conexion;
+package Conexion;
 
 // @author guido
 import java.io.BufferedReader;

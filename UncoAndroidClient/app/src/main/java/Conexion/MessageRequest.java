@@ -1,5 +1,4 @@
-package com.example.uncoandroidclient.Conexion;
-
+package Conexion;
 // @author guido
 import java.util.UUID;
 import java.util.concurrent.Semaphore;
