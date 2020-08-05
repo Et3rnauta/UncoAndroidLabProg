@@ -14,14 +14,19 @@ public class AndroidTest {
     @Test
     public void test1() throws InterruptedException {
         controller = new ServerController();
-        controller.startServer();
-        connector = controller.recieveClient();
+        System.out.println("Esperando Cliente");
+        controller.startServer();        
+        connector = controller.recieveClient(); 
         connector.startConnection(new ServerTestHandler(this));
-        controller.endServer();
-        connector.makeRequest("Hola Cliente");
+        System.out.println("Cliente Conectado");               
+        controller.endServer();        
+        System.out.println("Enviando Mensaje");
+        connector.makeRequest("Hola Cliente");        
+        System.out.println("Mensaje Enviado");
         synchronized (this) {
             wait();
         }
+        System.out.println("Mensaje Recibido");
     }
 
     void wake() {

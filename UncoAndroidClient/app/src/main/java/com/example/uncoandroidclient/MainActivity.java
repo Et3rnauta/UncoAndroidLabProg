@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import Conexion.ClientConnector;
 import Conexion.ConnectionRequestHandler;
-import Conexion.ServerConnector;
-import Conexion.ServerController;
 
 public class MainActivity extends AppCompatActivity {
     private TextView status, output;
@@ -34,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         input = (EditText) findViewById(R.id.ptxt_input);
 
         connect = (Button) findViewById(R.id.btn_connect);
-        connect.setOnClickListener(new View.OnClickListener(){
+        connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new ConnectButton().execute();
@@ -42,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         send = (Button) findViewById(R.id.btn_send);
-        send.setOnClickListener(new View.OnClickListener(){
+        send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new SendButton().execute(input.getText().toString());
@@ -50,44 +48,55 @@ public class MainActivity extends AppCompatActivity {
         });
 
         disconnect = (Button) findViewById(R.id.btn_disconnect);
-        disconnect.setOnClickListener(new View.OnClickListener(){
+        disconnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new DisconnectButton().execute();
             }
         });
-
-        connector = new ClientConnector(ServerController.getIpAdress());
-
-        System.out.println("Your IP Address is: " + ServerController.getIpAdress());
     }
 
 
-    class ConnectButton extends AsyncTask<Void,Void,Void> {
+    class ConnectButton extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
 
-            if(connector.startConnection(new TestClientHandler())){
-               status.setText("Connected!");
-            }else{
-                status.setText("Couldn't connect!");
+            connector = new ClientConnector("192.168.0.175");
+            if (connector.startConnection(new TestClientHandler())) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        status.setText("Connected!");
+                    }
+                });
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        status.setText("Couldn't Connect!");
+                    }
+                });
             }
-
-
             return null;
         }
 
         private class TestClientHandler extends ConnectionRequestHandler {
             @Override
-            public String handle(String msgReq) {
-                output.setText(msgReq);
+            public String handle(final String msgReq) {
+                final String msg = msgReq;
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        output.setText(msg);
+                    }
+                });
                 return null;
             }
         }
     }
 
-    class SendButton extends AsyncTask<String,Void,Void> {
+    class SendButton extends AsyncTask<String, Void, Void> {
 
         @Override
         protected Void doInBackground(String... strings) {
@@ -97,16 +106,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class DisconnectButton extends AsyncTask<Void,Void,Void> {
+    class DisconnectButton extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
-           if( connector.endConnection()){
-               status.setText("Not connected!");
-           }else{
-               status.setText("YOU CANT DISCONNECT, now you are mine!" +
-                       "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-           }
+            if (connector.endConnection()) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        status.setText("Not connected!");
+                    }
+                });
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        status.setText("YOU CANT DISCONNECT, now you are mine!");
+                    }
+                });
+            }
             return null;
         }
     }
