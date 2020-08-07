@@ -1,4 +1,4 @@
-package com.example.uncoandroidclient;
+package TestConexion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,10 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.uncoandroidclient.R;
+
 import Conexion.ClientConnector;
 import Conexion.ConnectionRequestHandler;
 
-public class MainActivity extends AppCompatActivity {
+public class TestConexionActivity extends AppCompatActivity {
     private TextView status, output;
 
     private EditText input;
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_test);
 
         status = (TextView) findViewById(R.id.txtv_status);
         output = (TextView) findViewById(R.id.txtv_output);
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ConnectButton().execute();
+                new ConnectButtonTest().execute();
             }
         });
 
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new SendButton().execute(input.getText().toString());
+                new SendButtonTest().execute(input.getText().toString());
             }
         });
 
@@ -51,13 +53,12 @@ public class MainActivity extends AppCompatActivity {
         disconnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DisconnectButton().execute();
+                new DisconnectButtonTest().execute();
             }
         });
     }
 
-
-    class ConnectButton extends AsyncTask<Void, Void, Void> {
+    class ConnectButtonTest extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class SendButton extends AsyncTask<String, Void, Void> {
+    class SendButtonTest extends AsyncTask<String, Void, Void> {
 
         @Override
         protected Void doInBackground(String... strings) {
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class DisconnectButton extends AsyncTask<Void, Void, Void> {
+    class DisconnectButtonTest extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {

@@ -25,6 +25,9 @@ public class GameServer {
         clock = new Clock();
     }
 
+    /**
+     * Abre la sala para recibir nuevos jugadores
+     */
     public void openRoom() {
         receiver = new PlayerReceiver(this);
         players = new ArrayList<>();
@@ -34,11 +37,18 @@ public class GameServer {
         new Thread(receiver, "PlayerReceiver").start();
     }
 
+    /**
+     * Cierra la sala, evitando el ingreso de nuevos jugadores
+     */
     public void closeRoom() {
         receiver.closeRoom();
         controller.endServer();
     }
 
+    /**
+     * Juega una ronda de una pregunta
+     * @param questionRound El numero de pregunta a jugar
+     */
     public void playRound(int questionRound) {
         players.forEach((player) -> {
             player.makeRequest(questions[questionRound].toRequest());
@@ -58,12 +68,18 @@ public class GameServer {
         });
     }
 
+    /**
+     * Termina la partida, debe ser llamado primero
+     */
     public void endGame() {
         players.forEach((player) -> {
             player.makeRequest("endGame:");
         });
     }
     
+    /**
+     * Cierra la conexión con los jugadores, debe ser llamado último
+     */
     public void closeConnection(){        
         players.forEach((player) -> {
             player.endConnection();

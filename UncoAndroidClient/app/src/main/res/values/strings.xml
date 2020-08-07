@@ -1,6 +1,25 @@
 <resources>
     <string name="app_name">UncoAndroidClient</string>
-    <string name="txtv_output">Waiting for server...</string>
-    <string name="ptxt_input">Type your message!</string>
-    <string name="txtv_status">Not connected</string>
+    <!-- Start Activity -->
+    <string name="txtv_title">UncoHoot</string>
+    <string name="ptxt_login">Nombre de Usuario</string>
+    <string name="ptxt_password">Contraseña</string>
+    <string name="btn_login">Log In</string>
+    <string name="btn_register">Registrar</string>
+    <string name="btn_exit">Salir</string>
+    <!-- Main Activity -->
+    <string name="txtv_iphelp">Ingrese la Dirección IP del Juego</string>
+    <string name="ptxt_ip">000.000.000.000</string>
+    <string name="btn_connect">Conectar</string>
+    <string name="btn_config">Ajustes</string>
+    <string name="btn_ranking">Ranking</string>
+    <!-- Register Activity -->
+    <string name="ptxt_password_r">Repetir Contraseña</string>
+    <string name="btn_create">Crear Usuario</string>
+    <!-- Config Activity -->
+    <string name="txtv_music">Música</string>
+    <string name="btn_music_true">Musica Activada</string>
+    <string name="btn_music_false">Musica Desctivada</string>
+    <string name="txtv_lang">Idioma</string>
+    <string name="btn_lang">Idioma Español</string>
 </resources>
