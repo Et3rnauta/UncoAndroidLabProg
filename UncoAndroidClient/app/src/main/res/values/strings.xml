@@ -22,4 +22,14 @@
     <string name="btn_music_false">Musica Desctivada</string>
     <string name="txtv_lang">Idioma</string>
     <string name="btn_lang">Idioma Español</string>
+    <!-- Waiting Activity -->
+    <string name="txtv_wait">Esperando...</string>
+    <string name="txtv_wnumb">Pregunta N° X</string>
+    <!-- Question Activity -->
+    <string name="txtv_qnumb">Pregunta X</string>
+    <string name="txtv_qdef">Aca va la Pregunta</string>
+    <string name="btn_qans1">Answer 1</string>
+    <string name="btn_qans2">Answer 2</string>
+    <string name="btn_qans3">Answer 3</string>
+    <string name="btn_qans4">Answer 4</string>
 </resources>

@@ -47,6 +47,7 @@ public class GameServer {
 
     /**
      * Juega una ronda de una pregunta
+     *
      * @param questionRound El numero de pregunta a jugar
      */
     public void playRound(int questionRound) {
@@ -76,11 +77,11 @@ public class GameServer {
             player.makeRequest("endGame:");
         });
     }
-    
+
     /**
      * Cierra la conexión con los jugadores, debe ser llamado último
      */
-    public void closeConnection(){        
+    public void closeConnection() {
         players.forEach((player) -> {
             player.endConnection();
         });
@@ -111,7 +112,7 @@ public class GameServer {
 
     /**
      * Devuelve el puntaje total del usuario
-     * 
+     *
      * @param userName nombre del usuario a consultar
      * @return el puntaje del usuario o null si encontro un error
      */
@@ -136,6 +137,8 @@ public class GameServer {
         public void run() {
             int i = 0;
             while (isOpen) {
+                //Cada jugador debe crear el conector, llamar a startConnection 
+                //y poder responder su nombre para iniciar correctamente
                 ServerConnector player = controller.recieveClient();
                 if (player != null) {
                     player.startConnection(new GameServerHandler(game));

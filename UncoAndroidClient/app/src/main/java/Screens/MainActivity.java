@@ -68,43 +68,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ConfigActivity.class);
         startActivity(intent);
     }
-
-    class ConnectButton extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-
-            connector = new ClientConnector("INGRESAR IP");
-            if (connector.startConnection(new TestConexionActivity.ConnectButtonTest.TestClientHandler())) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        status.setText("Connected!");
-                    }
-                });
-            } else {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        status.setText("Couldn't Connect!");
-                    }
-                });
-            }
-            return null;
-        }
-
-        private class TestClientHandler extends ConnectionRequestHandler {
-            @Override
-            public String handle(final String msgReq) {
-                final String msg = msgReq;
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        output.setText(msg);
-                    }
-                });
-                return null;
-            }
-        }
-    }
 }
