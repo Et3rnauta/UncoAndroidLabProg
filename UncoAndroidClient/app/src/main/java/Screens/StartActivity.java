@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import com.example.uncoandroidclient.R;
 
+import Logic.GameState;
+
 public class StartActivity extends AppCompatActivity {
 
     EditText Username, Password;
@@ -50,6 +52,10 @@ public class StartActivity extends AppCompatActivity {
      */
     private void btnLogin(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+
+        //TODO: CAMBIAR
+        GameState.playerName = "Guido";
+
         startActivity(intent);
     }
 

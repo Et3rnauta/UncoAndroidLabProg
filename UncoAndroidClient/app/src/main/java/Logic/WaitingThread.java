@@ -31,7 +31,7 @@ public class WaitingThread implements Runnable {
         isLast = true;
     }
 
-    public void wake(){
+    public synchronized void wake(){
         notify();
     }
 }

@@ -1,31 +1,48 @@
-
 package Main;
 
 // @author guido
-
+import Conexion.ServerController;
+import Logic.Clock;
 import Logic.GameServer;
 
 public class TestGame {
-    
+
     static GameServer game;
-    
+
     public static void main(String[] args) {
         
-        System.out.println("Abriendo Sala");
+        game = new GameServer(conjuntoPreguntas1());
+        
+        System.out.println("Abriendo Sala sobre la IP: " + ServerController.getIpAdress());
         game.openRoom();
-        
-        System.out.println("Esperando jugadores, presiones \"Enter\" para comenzar el Juego.");
+
+        System.out.println("Esperando jugadores, presione \"Enter\" para comenzar el Juego.");
         TecladoIn.readLine();
-        
+
         game.closeRoom();
-        
+
+        game.playRound(0);
+        Clock.sleep(1);
         game.playRound(1);
-        //....
-        
+        Clock.sleep(1);
+        game.playRound(2);
+        Clock.sleep(1);
+
         game.endGame();
+        game.printGameStatistics();
         game.closeConnection();
     }
-    
-    //TODO: Definir Preguntas
+
+    public static String[][] conjuntoPreguntas1() {
+        //[quest][rightAns][ans2][ans3][ans4][time]        
+        String[][] testSet = {
+            {"¿Cuanto es 2 + 2?", "4", "3", "6", "5", "10"},
+            {"¿Cual es la capital de Argentina?", "Buenos Aires", "Neuquen", 
+                "Cipolletti", "Vaca Muerta", "10"},
+            {"¿Cual es la mejor materia en la FAI?","Laboratorio de Programacion", 
+                "Diseño de Base de Datos", "Analisis de Algoritmos", "Introduccion a la Computacion", "10"}
+        };        
+        return testSet;
+    }
 
 }

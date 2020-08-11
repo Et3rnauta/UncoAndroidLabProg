@@ -16,7 +16,7 @@ public class GameServer {
     private Clock clock;
     private int[] playerScores;
 
-    GameServer(String[][] questions) {
+    public GameServer(String[][] questions) {
         this.questions = new Question[questions.length];
         for (int i = 0; i < questions.length; i++) {
             this.questions[i] = new Question(questions[i]);
@@ -51,11 +51,17 @@ public class GameServer {
      * @param questionRound El numero de pregunta a jugar
      */
     public void playRound(int questionRound) {
+
+        System.out.println("Enviando preguntas...");
+
         players.forEach((player) -> {
             player.makeRequest(questions[questionRound].toRequest());
         });
 
         Clock.sleep(1);
+
+        System.out.println("Comienza Pregunta N° " + questionRound);
+
         String startQuestion = "startQuestion:";
         players.forEach((player) -> {
             player.makeRequest(startQuestion);
@@ -63,6 +69,8 @@ public class GameServer {
 
         clock.startCountdown(questions[questionRound].time, true);
         Clock.sleep(questions[questionRound].time);
+
+        System.out.println("Fin de la Pregunta");
 
         players.forEach((player) -> {
             player.makeRequest("endQuestion:");
@@ -73,15 +81,38 @@ public class GameServer {
      * Termina la partida, debe ser llamado primero
      */
     public void endGame() {
+        System.out.println("Fin del Juego");
         players.forEach((player) -> {
             player.makeRequest("endGame:");
         });
+    }
+
+    public void printGameStatistics() {
+        System.out.println("Cargando Estadisticas del Juego");
+//        TODO: Agregar ordenamiento
+//        String[] nameOrdered = new String[playerNames.size()];
+//        int[] scoresOrdered = new int[playerScores.length];
+//        
+//        for (int i = 0; i < nameOrdered.length; i++) {
+//            String name = playerNames.get(i);
+//            int score = playerScores[i];
+//            for (int j = 0; j <= i; j++) {
+//                if(score > scoresOrdered[j]){
+//                    
+//                }                
+//            }
+//        }
+        System.out.println("Los resultados del Juego son:");
+        for (int i = 0; i < playerNames.size(); i++) {
+            System.out.println((i + 1) + ". " + playerNames.get(i));            
+        }
     }
 
     /**
      * Cierra la conexión con los jugadores, debe ser llamado último
      */
     public void closeConnection() {
+        System.out.println("Se desconectan los jugadores");
         players.forEach((player) -> {
             player.endConnection();
         });
@@ -141,6 +172,9 @@ public class GameServer {
                 //y poder responder su nombre para iniciar correctamente
                 ServerConnector player = controller.recieveClient();
                 if (player != null) {
+
+                    System.out.println("Se recibe un nuevo jugador");
+
                     player.startConnection(new GameServerHandler(game));
 
                     String playerNameAux = player.makeRequest("getName:");

@@ -20,14 +20,13 @@ public class GameClientHandler extends ConnectionRequestHandler {
             case "setQuestion":
                 //(question)..(respuestas)..
                 gameState.qDefinition = function.get(1);
-                gameState.answer1 = function.get(2);
-                gameState.answer2 = function.get(3);
-                gameState.answer3 = function.get(4);
-                gameState.answer4 = function.get(5);
+                gameState.answers[0] = function.get(2);
+                gameState.answers[1] = function.get(3);
+                gameState.answers[2] = function.get(4);
+                gameState.answers[3] = function.get(5);
                 gameState.qTime = Integer.decode(function.get(6));
                 break;
             case "startQuestion":
-                gameState.qNumber++;
                 gameState.startQuestion();
                 break;
             case "endQuestion":

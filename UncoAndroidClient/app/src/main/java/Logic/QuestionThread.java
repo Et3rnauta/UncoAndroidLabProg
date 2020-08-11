@@ -13,7 +13,7 @@ public class QuestionThread implements Runnable {
     @Override
     public void run() {
         try {
-            synchronized (this){
+            synchronized (this) {
                 wait();
             }
         } catch (InterruptedException e) {
@@ -22,7 +22,7 @@ public class QuestionThread implements Runnable {
         questionActivity.endQuestion();
     }
 
-    public void wake(){
+    public synchronized void wake() {
         notify();
     }
 }

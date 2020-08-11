@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -29,9 +30,33 @@ public class QuestionActivity extends AppCompatActivity {
         qNumber = (TextView) findViewById(R.id.txtv_qust_qnumb);
         qDefinition = (TextView) findViewById(R.id.txtv_qust_qdef);
         answer1 = (Button) findViewById(R.id.btn_qust_qans1);
+        answer1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AnswerButton().execute(0);
+            }
+        });
         answer2 = (Button) findViewById(R.id.btn_qust_qans2);
+        answer2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AnswerButton().execute(1);
+            }
+        });
         answer3 = (Button) findViewById(R.id.btn_qust_qans3);
+        answer3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AnswerButton().execute(2);
+            }
+        });
         answer4 = (Button) findViewById(R.id.btn_qust_qans4);
+        answer4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AnswerButton().execute(3);
+            }
+        });
 
         //Configurar pregunta en la pantalla
         qNumber.setText("Pregunta N° " + gameState.qNumber);

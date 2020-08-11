@@ -4,9 +4,10 @@ import Conexion.ClientConnector;
 
 public class GameState {
 
+    public static String playerName;
     public static GameState game;
-    public String qDefinition,
-            playerName;
+
+    public String qDefinition;
     public String[] answers;
     public int qNumber,
             qTime;
@@ -22,6 +23,10 @@ public class GameState {
         this.qTime = 0;
     }
 
+    public static void resetGameObject(){
+        game = new GameState();
+    }
+
     public static GameState getGameObject() {
         if (game == null) {
             game = new GameState();
@@ -29,9 +34,8 @@ public class GameState {
         return game;
     }
 
-    public boolean connect(String ipAddress, String name) {
+    public boolean connect(String ipAddress) {
         connector = new ClientConnector(ipAddress);
-        playerName = name;
         return connector.startConnection(new GameClientHandler());
     }
 
@@ -48,6 +52,7 @@ public class GameState {
     }
 
     public void endQuestion() {
+        qNumber++;
         questionThread.wake();
     }
 
@@ -60,6 +65,7 @@ public class GameState {
     }
 
     public void endGame() {
+        //TODO: Agregar endConnection()
         waitingThread.isLast();
         waitingThread.wake();
     }
