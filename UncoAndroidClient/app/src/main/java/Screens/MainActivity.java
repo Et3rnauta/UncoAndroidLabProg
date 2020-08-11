@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        GameState.resetGameObject();
         InputIp = (EditText) findViewById(R.id.ptxt_main_ip);
         Connect = (Button) findViewById(R.id.btn_main_connect);
         Connect.setOnClickListener(new View.OnClickListener() {

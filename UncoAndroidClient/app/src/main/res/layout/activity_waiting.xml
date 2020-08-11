@@ -12,19 +12,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
         android:text="@string/txtv_wait"
+        android:textSize="30sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtv_wait_qnumb"
+        android:id="@+id/txtv_wait_qscore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/txtv_wnumb"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:text="@string/txtv_qscore"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtv_wait_wait" />

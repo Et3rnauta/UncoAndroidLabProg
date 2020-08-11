@@ -103,9 +103,11 @@ public class GameServer {
 //            }
 //        }
         System.out.println("Los resultados del Juego son:");
+        System.out.println("-----------------------------");
         for (int i = 0; i < playerNames.size(); i++) {
-            System.out.println((i + 1) + ". " + playerNames.get(i));            
-        }
+            System.out.println((i + 1) + ". " + playerNames.get(i) + " -- " + playerScores[i]);            
+        }        
+        System.out.println("-----------------------------");
     }
 
     /**
@@ -138,6 +140,9 @@ public class GameServer {
             score = clock.getCountdownTime() * 100 / questions[idQuestion].time;
         }
         playerScores[indice] += score;
+        
+        System.out.println(userName + " respondio y obtuvo: " + score + "pts");
+        
         return score;
     }
 

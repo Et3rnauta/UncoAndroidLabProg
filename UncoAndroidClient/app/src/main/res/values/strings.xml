@@ -24,7 +24,7 @@
     <string name="btn_lang">Idioma Español</string>
     <!-- Waiting Activity -->
     <string name="txtv_wait">Esperando...</string>
-    <string name="txtv_wnumb">Pregunta N° X</string>
+    <string name="txtv_qscore">Puntaje Actual: X</string>
     <!-- Question Activity -->
     <string name="txtv_qnumb">Pregunta X</string>
     <string name="txtv_qdef">Aca va la Pregunta</string>

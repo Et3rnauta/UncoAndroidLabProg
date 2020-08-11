@@ -10,7 +10,10 @@ public class GameState {
     public String qDefinition;
     public String[] answers;
     public int qNumber,
-            qTime;
+            qTime,
+            playerScore;
+
+    private boolean isQuestionActive;
 
     private ClientConnector connector;
     private QuestionThread questionThread;
@@ -21,9 +24,11 @@ public class GameState {
         this.qNumber = 0;
         this.answers = new String[4];
         this.qTime = 0;
+        this.isQuestionActive = false;
+        this.playerScore = 0;
     }
 
-    public static void resetGameObject(){
+    public static void resetGameObject() {
         game = new GameState();
     }
 
@@ -42,7 +47,7 @@ public class GameState {
     public void sendAnswer(Integer index) {
         String sendAnswer = "sendAnswer:(" + playerName + ")(" + qNumber + ")(" + answers[index] + ")";
         //TODO: Ver respuesta score
-        connector.makeRequest(sendAnswer);
+        playerScore += Integer.decode(connector.makeRequest(sendAnswer));
         endQuestion();
     }
 
@@ -52,7 +57,10 @@ public class GameState {
     }
 
     public void endQuestion() {
-        qNumber++;
+        if (isQuestionActive) {
+            qNumber++;
+            isQuestionActive = false;
+        }
         questionThread.wake();
     }
 
@@ -62,10 +70,10 @@ public class GameState {
 
     public void startQuestion() {
         waitingThread.wake();
+        isQuestionActive = true;
     }
 
     public void endGame() {
-        //TODO: Agregar endConnection()
         waitingThread.isLast();
         waitingThread.wake();
     }

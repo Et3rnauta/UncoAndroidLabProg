@@ -13,7 +13,7 @@ public class TestGame {
         
         game = new GameServer(conjuntoPreguntas1());
         
-        System.out.println("Abriendo Sala sobre la IP: " + ServerController.getIpAdress());
+        System.out.println("Abriendo Sala sobre la IP: 192.168.0.175");
         game.openRoom();
 
         System.out.println("Esperando jugadores, presione \"Enter\" para comenzar el Juego.");

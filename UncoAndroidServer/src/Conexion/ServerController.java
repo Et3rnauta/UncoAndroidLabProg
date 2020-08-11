@@ -4,6 +4,7 @@ package Conexion;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class ServerController {
@@ -11,13 +12,13 @@ public class ServerController {
     private ServerSocket serverSocket;
     private int port;
     private boolean isOpen = false;
-    
+
     public static final int DEFAULTPORT = 49999;
 
     public ServerController(int port) {
         this.port = port;
     }
-    
+
     /**
      * Creates a controller with a default port
      */
@@ -27,13 +28,14 @@ public class ServerController {
 
     /**
      * Starts the server
-     * @return true - if able to start the server.
-     * false - if not able to start the server
+     *
+     * @return true - if able to start the server. false - if not able to start
+     * the server
      */
     public boolean startServer() {
         try {
             serverSocket = new ServerSocket(port);
-            synchronized(this){
+            synchronized (this) {
                 isOpen = true;
             }
             return true;
@@ -44,6 +46,7 @@ public class ServerController {
 
     /**
      * Recieves a new Client in a ServerConnector
+     *
      * @return null if no client was recieved or an error was found
      */
     public ServerConnector recieveClient() {
@@ -53,19 +56,21 @@ public class ServerController {
             return null;
         }
     }
-    
-    public synchronized boolean isOpen(){
+
+    public synchronized boolean isOpen() {
         return isOpen;
     }
 
     /**
      * Closes the server
-     * @return false if not possible or if there is a thread waiting to accept a client
+     *
+     * @return false if not possible or if there is a thread waiting to accept a
+     * client
      */
     public boolean endServer() {
         try {
-            serverSocket.close();            
-            synchronized(this){
+            serverSocket.close();
+            synchronized (this) {
                 isOpen = false;
             }
             return true;
@@ -73,9 +78,10 @@ public class ServerController {
             return false;
         }
     }
-    
-    /** 
-     * Gives the current Ip Address 
+
+    /**
+     * Gives the current Ip Address (may not work in some environments)
+     *
      * @return null if not possible
      */
     public static String getIpAdress() {
