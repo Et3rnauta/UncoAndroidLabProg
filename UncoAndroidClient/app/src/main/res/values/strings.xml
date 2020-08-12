@@ -32,4 +32,9 @@
     <string name="btn_qans2">Answer 2</string>
     <string name="btn_qans3">Answer 3</string>
     <string name="btn_qans4">Answer 4</string>
+    <!-- End Activity -->
+    <string name="txtv_endgame">Fin del Juego</string>
+    <string name="txtv_endranking">Terminaste X°</string>
+    <string name="txtv_endscore">Puntaje Final: X</string>
+    <string name="btn_endcontinue">Continuar</string>
 </resources>

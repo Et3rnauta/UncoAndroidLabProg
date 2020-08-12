@@ -46,9 +46,14 @@ public class GameState {
 
     public void sendAnswer(Integer index) {
         String sendAnswer = "sendAnswer:(" + playerName + ")(" + qNumber + ")(" + answers[index] + ")";
-        //TODO: Ver respuesta score
         playerScore += Integer.decode(connector.makeRequest(sendAnswer));
         endQuestion();
+    }
+
+    public String getRankPos() {
+        //TODO: implementar getRankPos en server
+        String getRankPos = "getRankPos:(" + playerName + ")";
+        return connector.makeRequest(getRankPos);
     }
 
     //Manejo de Threads de Control de Pantallas
@@ -77,7 +82,4 @@ public class GameState {
         waitingThread.isLast();
         waitingThread.wake();
     }
-
-    //TODO: crear juego para cliente
-
 }
