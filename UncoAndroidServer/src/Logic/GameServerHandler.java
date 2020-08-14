@@ -15,7 +15,7 @@ public class GameServerHandler extends ConnectionRequestHandler {
     @Override
     public String handle(String msgReq) {
         ArrayList<String> function = decodeMessage(msgReq);
-        String msgReturn;
+        String msgReturn = "";
         switch (function.get(0)) {
             case "sendAnswer":
                 //(nombreDeUser)(numPregunta)(respuesta)
@@ -34,6 +34,7 @@ public class GameServerHandler extends ConnectionRequestHandler {
     
     /**
      * Decodifica un request para obtener el nombre y sus parametros
+     * 
      * @param msgReq : request a decodificar
      * @return Lista con nombre de request en primera posicion y parametros 
      * en el resto
@@ -41,7 +42,7 @@ public class GameServerHandler extends ConnectionRequestHandler {
     private ArrayList<String> decodeMessage(String msgReq) {
         ArrayList<String> arrayFunc = new ArrayList<>();
         
-        //nombre
+        //nombre de la funcion
         arrayFunc.add(msgReq.substring(0, msgReq.indexOf(":")));
         
         //parametros

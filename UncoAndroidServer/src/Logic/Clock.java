@@ -38,12 +38,7 @@ public class Clock {
     }
 
     private CountdownTimer countdownTimer;
-
-    /**
-     *
-     * @param seconds
-     * @param printActive
-     */
+    
     public void startCountdown(int seconds, boolean printActive) {
         countdownTimer = new CountdownTimer(seconds, printActive);
         new Thread(countdownTimer, "countdownTimer").start();

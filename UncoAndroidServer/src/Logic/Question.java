@@ -25,6 +25,9 @@ public class Question {
         
     }
 
+    /**
+     * Transforma la Pregunta en una consulta con formato String
+     */
     public String toRequest() {
         ArrayList<String> answers = new ArrayList<>();
 
@@ -39,6 +42,12 @@ public class Question {
                 question, answers.get(0), answers.get(1), answers.get(2), answers.get(3), time);
     }
 
+    /**
+     * Verifica si una respuesta es correcta
+     * 
+     * @param answer Respuesta a verificar
+     * @return True si es correcta o False en caso contrario
+     */
     public boolean isRightAns(String answer) {
         return answer.equals(rightAns);
     }
