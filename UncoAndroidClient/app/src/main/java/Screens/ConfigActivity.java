@@ -8,15 +8,19 @@ import android.widget.Button;
 
 import com.example.uncoandroidclient.R;
 
+import Components.MusicState;
+
 public class ConfigActivity extends AppCompatActivity {
 
     Button Music, Language, Exit;
+    MusicState musicObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
 
+        musicObj = MusicState.getMusicObject();
         Music = (Button) findViewById(R.id.btn_config_music);
         Music.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,5 +51,22 @@ public class ConfigActivity extends AppCompatActivity {
     }
 
     private void btnMusic(View view) {
+        if (musicObj.changeMusic()) {
+            // Si esta prendida
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Music.setText(R.string.btn_music_true);
+                }
+            });
+        } else {
+            // Si esta apagada
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Music.setText(R.string.btn_music_false);
+                }
+            });
+        }
     }
 }

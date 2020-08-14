@@ -3,6 +3,7 @@ package Screens;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 
 import com.example.uncoandroidclient.R;
 
+import Components.MusicState;
 import Logic.GameState;
 
 public class StartActivity extends AppCompatActivity {
@@ -45,6 +47,14 @@ public class StartActivity extends AppCompatActivity {
                 btnExit(view);
             }
         });
+
+        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bg_music);
+        try {
+            mediaPlayer.prepare();
+        } catch (Exception e) {
+        }
+        mediaPlayer.start();
+        MusicState.getMusicObject().setMediaPlayer(mediaPlayer);
     }
 
     /**
