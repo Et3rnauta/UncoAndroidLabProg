@@ -40,4 +40,9 @@ public class EndActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    @Override
+    public void onBackPressed() {
+        // Desabilita el boton de regreso
+    }
 }
