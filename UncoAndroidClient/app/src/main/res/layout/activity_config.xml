@@ -58,10 +58,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:background="@drawable/fai_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtv_config_title"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/fai_logo" />
 
     <Button
         android:id="@+id/btn_config_music"
