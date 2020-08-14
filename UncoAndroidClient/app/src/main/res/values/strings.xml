@@ -18,8 +18,8 @@
     <string name="btn_create">Crear Usuario</string>
     <!-- Config Activity -->
     <string name="txtv_music">Música</string>
-    <string name="btn_music_true">Musica Activada</string>
-    <string name="btn_music_false">Musica Desctivada</string>
+    <string name="btn_music_true">La Musica esta Prendida</string>
+    <string name="btn_music_false">La Musica esta Apagada</string>
     <string name="txtv_lang">Idioma</string>
     <string name="btn_lang">Idioma Español</string>
     <!-- Waiting Activity -->
