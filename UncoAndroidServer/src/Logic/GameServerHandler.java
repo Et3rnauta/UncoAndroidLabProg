@@ -15,7 +15,7 @@ public class GameServerHandler extends ConnectionRequestHandler {
     @Override
     public String handle(String msgReq) {
         ArrayList<String> function = decodeMessage(msgReq);
-        String msgReturn;
+        String msgReturn = "";
         switch (function.get(0)) {
             case "sendAnswer":
                 //(nombreDeUser)(numPregunta)(respuesta)

@@ -37,13 +37,13 @@ public class WaitingActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                startMainActivity();
+                startEndActivity();
             }
         });
     }
 
-    private void startMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+    private void startEndActivity() {
+        Intent intent = new Intent(this, EndActivity.class);
         startActivity(intent);
         finish();
     }

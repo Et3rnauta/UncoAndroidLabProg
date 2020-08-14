@@ -7,7 +7,8 @@ public class GameState {
     public static String playerName;
     public static GameState game;
 
-    public String qDefinition;
+    public String qDefinition,
+            rankPos;
     public String[] answers;
     public int qNumber,
             qTime,
@@ -26,6 +27,7 @@ public class GameState {
         this.qTime = 0;
         this.isQuestionActive = false;
         this.playerScore = 0;
+        this.rankPos = "0";
     }
 
     public static void resetGameObject() {
@@ -51,9 +53,7 @@ public class GameState {
     }
 
     public String getRankPos() {
-        //TODO: implementar getRankPos en server
-        String getRankPos = "getRankPos:(" + playerName + ")";
-        return connector.makeRequest(getRankPos);
+        return rankPos;
     }
 
     //Manejo de Threads de Control de Pantallas
@@ -78,7 +78,8 @@ public class GameState {
         isQuestionActive = true;
     }
 
-    public void endGame() {
+    public void endGame(String rankPos) {
+        this.rankPos = rankPos;
         waitingThread.isLast();
         waitingThread.wake();
     }

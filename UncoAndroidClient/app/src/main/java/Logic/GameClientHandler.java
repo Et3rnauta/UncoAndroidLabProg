@@ -33,7 +33,7 @@ public class GameClientHandler extends ConnectionRequestHandler {
                 gameState.endQuestion();
                 break;
             case "endGame":
-                gameState.endGame();
+                gameState.endGame(function.get(1));
                 break;
             case "getName":
                 msgReturn = gameState.playerName;

@@ -10,7 +10,7 @@ public class GameServer {
     private Question[] questions;
     private ServerController controller;
     private ArrayList<ServerConnector> players;
-    private ArrayList<String> playerNames;
+    private ArrayList<String> playerNames, playersRanked;
     private ArrayList<Integer> playerScoresAux;
     private PlayerReceiver receiver;
     private Clock clock;
@@ -82,31 +82,37 @@ public class GameServer {
      */
     public void endGame() {
         System.out.println("Fin del Juego");
-        players.forEach((player) -> {
-            player.makeRequest("endGame:");
-        });
+        playersRanked = new ArrayList<>();
+        ArrayList<Integer> scoresOrdered = new ArrayList<>();
+
+        for (int i = 0; i < playerNames.size(); i++) {
+            String name = playerNames.get(i);
+            int score = playerScores[i];
+            for (int j = 0; j <= i; j++) {
+                if (j == i) {
+                    playersRanked.add(name);
+                    scoresOrdered.add(score);
+                    break;
+                } else if (scoresOrdered.get(j) < score) {
+                    playersRanked.add(j, name);
+                    scoresOrdered.add(j, score);
+                    break;
+                }
+            }
+        }
+
+        for (int i = 0; i < players.size(); i++) {
+            String endGame = "endGame:(" + (playersRanked.indexOf(playerNames.get(i)) + 1) + ")";
+            players.get(i).makeRequest(endGame);
+        }
     }
 
     public void printGameStatistics() {
-        System.out.println("Cargando Estadisticas del Juego");
-//        TODO: Agregar ordenamiento
-//        String[] nameOrdered = new String[playerNames.size()];
-//        int[] scoresOrdered = new int[playerScores.length];
-//        
-//        for (int i = 0; i < nameOrdered.length; i++) {
-//            String name = playerNames.get(i);
-//            int score = playerScores[i];
-//            for (int j = 0; j <= i; j++) {
-//                if(score > scoresOrdered[j]){
-//                    
-//                }                
-//            }
-//        }
         System.out.println("Los resultados del Juego son:");
         System.out.println("-----------------------------");
         for (int i = 0; i < playerNames.size(); i++) {
-            System.out.println((i + 1) + ". " + playerNames.get(i) + " -- " + playerScores[i]);            
-        }        
+            System.out.println((i + 1) + ". " + playerNames.get(i) + " -- " + playerScores[i]);
+        }
         System.out.println("-----------------------------");
     }
 
@@ -140,9 +146,9 @@ public class GameServer {
             score = clock.getCountdownTime() * 100 / questions[idQuestion].time;
         }
         playerScores[indice] += score;
-        
+
         System.out.println(userName + " respondio y obtuvo: " + score + "pts");
-        
+
         return score;
     }
 
