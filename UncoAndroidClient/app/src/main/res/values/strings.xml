@@ -3,10 +3,18 @@
     <string name="app_name">UncoAndroidClient</string>
     <string name="ptxt_login">Username</string>
     <string name="ptxt_password">Password</string>
+    <string name="ptxt_ip" translatable="false">0.0.0.0</string>
+    <string name="txtv_title" translatable="false">UncoHoot</string>
+    <string name="btn_ranking" translatable="false">Ranking</string>
     <string name="btn_login">Log in</string>
     <string name="btn_register">Sign up</string>
     <string name="btn_exit">Exit</string>
     <string name="txtv_iphelp">Game\'s IP Address</string>
+    <string name="btn_qans1" translatable="false">Ans1</string>
+    <string name="btn_qans2" translatable="false">Ans2</string>
+    <string name="btn_qans3" translatable="false">Ans3</string>
+    <string name="btn_qans4" translatable="false">Ans4</string>
+    <string name="txtv_qdef" translatable="false">Question</string>
     <string name="btn_connect">Connect</string>
     <string name="btn_config">Settings</string>
     <string name="ptxt_password_r">Repeat password</string>

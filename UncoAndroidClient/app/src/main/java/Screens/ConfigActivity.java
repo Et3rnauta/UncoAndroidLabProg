@@ -2,15 +2,25 @@ package Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Locale;
+
+
 import com.example.uncoandroidclient.R;
+
+import java.util.Locale;
 
 public class ConfigActivity extends AppCompatActivity {
 
     Button Music, Language, Exit;
+    boolean isSpanish=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +51,25 @@ public class ConfigActivity extends AppCompatActivity {
     }
 
     private void btnLanguage(View view) {
+
+        Locale myLocale = new Locale("es");
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        Intent refresh = new Intent(this, MainActivity.class);
+        startActivity(refresh);
+        finish();
     }
 
     private void btnExit(View view) {
     }
 
     private void btnMusic(View view) {
+    }
+
+    public void setLocale(String lang) {
+
     }
 }

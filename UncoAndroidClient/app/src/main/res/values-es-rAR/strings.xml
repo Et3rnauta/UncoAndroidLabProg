@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">UncoAndroidClient</string>
     <!-- Start Activity -->
     <string name="ptxt_login">Nombre de Usuario</string>
     <string name="ptxt_password">Contraseña</string>
@@ -8,6 +9,7 @@
     <string name="btn_exit">Salir</string>
     <!-- Main Activity -->
     <string name="txtv_iphelp">Ingrese la Dirección IP del Juego</string>
+
     <string name="btn_connect">Conectar</string>
     <string name="btn_config">Ajustes</string>
     <!-- Register Activity -->
