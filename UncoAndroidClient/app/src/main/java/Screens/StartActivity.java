@@ -48,13 +48,16 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bg_music);
-        try {
-            mediaPlayer.prepare();
-        } catch (Exception e) {
+        if (!MusicState.isPlaying()) {
+            System.out.println("Entra");
+            MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bg_music);
+            try {
+                mediaPlayer.prepare();
+            } catch (Exception e) {
+            }
+            mediaPlayer.start();
+            MusicState.getMusicObject().setMediaPlayer(mediaPlayer);
         }
-        mediaPlayer.start();
-        MusicState.getMusicObject().setMediaPlayer(mediaPlayer);
     }
 
     /**
@@ -72,7 +75,7 @@ public class StartActivity extends AppCompatActivity {
     /**
      * Ejecución de Botón de Registrar
      */
-    private void btnRegister(View view){
+    private void btnRegister(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
@@ -80,6 +83,6 @@ public class StartActivity extends AppCompatActivity {
     /**
      * Ejecución de Botón de Salir
      */
-    private void btnExit(View view){
+    private void btnExit(View view) {
     }
 }

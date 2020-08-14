@@ -7,9 +7,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MusicState {
 
     public static MusicState musicObject;
+    public static boolean isPlaying = false;
 
     public MediaPlayer mediaPlayer;
-    public boolean isPlaying;
 
     public static MusicState getMusicObject(){
         if(musicObject == null){
@@ -37,6 +37,10 @@ public class MusicState {
             isPlaying = true;
             mediaPlayer.start();
         }
+        return isPlaying;
+    }
+
+    public static boolean isPlaying(){
         return isPlaying;
     }
 }
