@@ -1,5 +1,6 @@
 package Screens;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,12 +16,11 @@ import java.util.Locale;
 
 import com.example.uncoandroidclient.R;
 
-import java.util.Locale;
+import Logic.GameState;
 
 public class ConfigActivity extends AppCompatActivity {
 
     Button Music, Language, Exit;
-    boolean isSpanish=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,25 +51,33 @@ public class ConfigActivity extends AppCompatActivity {
     }
 
     private void btnLanguage(View view) {
-
-        Locale myLocale = new Locale("es");
+        Locale myLocale;
+        if (GameState.isSpanish) {
+            myLocale = new Locale("en");
+        } else {
+            System.out.println("A español");
+            myLocale = new Locale("es");
+        }
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
-        Intent refresh = new Intent(this, MainActivity.class);
-        startActivity(refresh);
+        onConfigurationChanged(conf);
+        GameState.changeLanguage();
+        Intent refresh = new Intent(this, ConfigActivity.class);
         finish();
+        startActivity(refresh);
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     private void btnExit(View view) {
     }
 
     private void btnMusic(View view) {
-    }
-
-    public void setLocale(String lang) {
-
     }
 }

@@ -9,10 +9,14 @@ import android.widget.EditText;
 
 import com.example.uncoandroidclient.R;
 
+import Logic.GameState;
+
 public class RegisterActivity extends AppCompatActivity {
 
     EditText Username, Password, PasswordRepeat;
     Button Register, Exit;
+
+    boolean isScreenSpanish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
                 btnExit(view);
             }
         });
+
+        isScreenSpanish = GameState.isSpanish;
     }
 
     private void btnExit(View view) {
@@ -44,5 +50,16 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void btnRegister(View view) {
 
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(isScreenSpanish !=  GameState.isSpanish){
+            finish();
+            startActivity(getIntent());
+        }
     }
 }

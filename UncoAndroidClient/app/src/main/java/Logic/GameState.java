@@ -5,6 +5,7 @@ import Conexion.ClientConnector;
 public class GameState {
 
     public static String playerName;
+    public static boolean isSpanish = true;
     public static GameState game;
 
     public String qDefinition,
@@ -39,6 +40,10 @@ public class GameState {
             game = new GameState();
         }
         return game;
+    }
+
+    public static void changeLanguage() {
+        isSpanish = !isSpanish;
     }
 
     public boolean connect(String ipAddress) {

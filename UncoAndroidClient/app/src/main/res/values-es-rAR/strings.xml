@@ -9,7 +9,6 @@
     <string name="btn_exit">Salir</string>
     <!-- Main Activity -->
     <string name="txtv_iphelp">Ingrese la Dirección IP del Juego</string>
-
     <string name="btn_connect">Conectar</string>
     <string name="btn_config">Ajustes</string>
     <!-- Register Activity -->
