@@ -17,19 +17,17 @@
         android:layout_marginRight="32dp"
         android:text="@string/btn_lang"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_config_music"
         app:layout_constraintTop_toBottomOf="@+id/txtv_config_lang" />
 
     <TextView
         android:id="@+id/txtv_config_lang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/txtv_lang"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_config_music" />
+        app:layout_constraintStart_toStartOf="@+id/btn_config_lang"
+        app:layout_constraintTop_toBottomOf="@+id/img_config_logo" />
 
     <Button
         android:id="@+id/btn_config_exit"
@@ -45,7 +43,7 @@
         android:id="@+id/txtv_config_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/txtv_title"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -58,10 +56,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:background="@drawable/fai_logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_config_title"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@drawable/fai_logo" />
 
     <Button
@@ -74,7 +73,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="@string/btn_music_true"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_config_lang"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtv_config_music" />
 
@@ -84,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/txtv_music"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_config_logo" />
