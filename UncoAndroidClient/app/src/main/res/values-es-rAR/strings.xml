@@ -24,10 +24,10 @@
     <string name="txtv_wait">Esperando...</string>
     <string name="txtv_qscore">Puntaje Actual:</string>
     <!-- Question Activity -->
-    <string name="txtv_qnumb">Pregunta:</string>
+    <string name="txtv_qnumb">Pregunta N° </string>
     <!-- End Activity -->
     <string name="txtv_endgame">Fin del Juego</string>
     <string name="txtv_endranking">Terminaste:</string>
-    <string name="txtv_endscore">Puntaje Final:</string>
+    <string name="txtv_endscore">Puntaje Final: </string>
     <string name="btn_endcontinue">Continuar</string>
 </resources>

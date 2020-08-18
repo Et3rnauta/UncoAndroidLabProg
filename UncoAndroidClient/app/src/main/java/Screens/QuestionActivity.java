@@ -59,7 +59,8 @@ public class QuestionActivity extends AppCompatActivity {
         });
 
         //Configurar pregunta en la pantalla
-        qNumber.setText("Pregunta N° " + gameState.qNumber);
+        String qNumbString = qNumber.getText().toString() + gameState.qNumber;
+        qNumber.setText(qNumbString);
         qDefinition.setText(gameState.qDefinition);
         answer1.setText(gameState.answers[0]);
         answer2.setText(gameState.answers[1]);

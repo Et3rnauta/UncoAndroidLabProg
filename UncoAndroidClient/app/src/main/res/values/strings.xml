@@ -25,8 +25,8 @@
     <string name="txtv_lang">Language</string>
     <string name="btn_lang">Change to Spanish</string>
     <string name="txtv_wait">Waiting...</string>
-    <string name="txtv_qscore">Score:</string>
-    <string name="txtv_qnumb">Question:</string>
+    <string name="txtv_qscore">Current Score: </string>
+    <string name="txtv_qnumb">Question N° </string>
     <string name="txtv_endgame">Game over</string>
     <string name="txtv_endranking">You finished:</string>
     <string name="txtv_endscore">Final score:</string>

@@ -26,7 +26,8 @@ public class SimpleGameTest {
     public static void setUpClass() {
         players = new TestPlayer[CANTPLAY];
         createQuestions();
-        game = new GameServer(questions);
+        //FIXME: Agregar Pregunas en ingles
+        game = new GameServer(questions, questions);
     }
 
     @Before

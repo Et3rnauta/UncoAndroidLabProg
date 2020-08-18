@@ -55,7 +55,6 @@ public class ConfigActivity extends AppCompatActivity {
         if (GameState.isSpanish) {
             myLocale = new Locale("en");
         } else {
-            System.out.println("A español");
             myLocale = new Locale("es");
         }
         Resources res = getResources();
