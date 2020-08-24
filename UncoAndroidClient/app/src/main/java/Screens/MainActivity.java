@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
     private void startWaitingActivity() {
         Intent intent = new Intent(this, WaitingActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
