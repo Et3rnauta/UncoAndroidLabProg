@@ -1,14 +1,23 @@
 package Screens;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+
+import java.util.Locale;
+
 
 import com.example.uncoandroidclient.R;
 
 import Components.MusicState;
+import Logic.GameState;
 
 public class ConfigActivity extends AppCompatActivity {
 
@@ -45,6 +54,27 @@ public class ConfigActivity extends AppCompatActivity {
     }
 
     private void btnLanguage(View view) {
+        Locale myLocale;
+        if (GameState.isSpanish) {
+            myLocale = new Locale("en");
+        } else {
+            myLocale = new Locale("es");
+        }
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        onConfigurationChanged(conf);
+        GameState.changeLanguage();
+        Intent refresh = new Intent(this, ConfigActivity.class);
+        finish();
+        startActivity(refresh);
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     private void btnExit(View view) {

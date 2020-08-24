@@ -23,11 +23,13 @@ public class EndActivity extends AppCompatActivity {
         setContentView(R.layout.activity_end);
 
         ranking = (TextView) findViewById(R.id.txtv_end_endranking);
-        ranking.setText("Terminaste " + GameState.getGameObject().getRankPos() + "°");
+        String rankingString = ranking.getText().toString() + " " + GameState.getGameObject().getRankPos() + "°";
+        ranking.setText(rankingString);
         score = (TextView) findViewById(R.id.txtv_end_endscore);
-        score.setText("Puntaje Final: " + GameState.getGameObject().playerScore);
+        String scoreString = score.getText().toString() + " " + GameState.getGameObject().playerScore;
+        score.setText(scoreString);
         btnContinue = (Button) findViewById(R.id.btn_end_endcontinue);
-        btnContinue.setOnClickListener(new View.OnClickListener(){
+        btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startMainActivity();

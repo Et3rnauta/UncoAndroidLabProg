@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     EditText InputIp;
     Button Connect, Config, Ranking, Exit;
 
+    boolean isScreenSpanish;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 btnExit(view);
             }
         });
+
+        isScreenSpanish = GameState.isSpanish;
     }
 
     class ConnectButton extends AsyncTask<String, Void, Void> {
@@ -144,5 +148,16 @@ public class MainActivity extends AppCompatActivity {
     private void startWaitingActivity() {
         Intent intent = new Intent(this, WaitingActivity.class);
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(isScreenSpanish !=  GameState.isSpanish){
+            finish();
+            startActivity(getIntent());
+        }
     }
 }

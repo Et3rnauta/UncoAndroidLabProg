@@ -1,40 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">UncoAndroidClient</string>
-    <!-- Start Activity -->
-    <string name="txtv_title">UncoHoot</string>
-    <string name="ptxt_login">Nombre de Usuario</string>
-    <string name="ptxt_password">Contraseña</string>
-    <string name="btn_login">Log In</string>
-    <string name="btn_register">Registrar</string>
-    <string name="btn_exit">Salir</string>
-    <!-- Main Activity -->
-    <string name="txtv_iphelp">Ingrese la Dirección IP del Juego</string>
-    <string name="ptxt_ip">000.000.000.000</string>
-    <string name="btn_connect">Conectar</string>
-    <string name="btn_config">Ajustes</string>
-    <string name="btn_ranking">Ranking</string>
-    <!-- Register Activity -->
-    <string name="ptxt_password_r">Repetir Contraseña</string>
-    <string name="btn_create">Crear Usuario</string>
-    <!-- Config Activity -->
-    <string name="txtv_music">Música</string>
-    <string name="btn_music_true">La Musica esta Prendida</string>
-    <string name="btn_music_false">La Musica esta Apagada</string>
-    <string name="txtv_lang">Idioma</string>
-    <string name="btn_lang">Idioma Español</string>
-    <!-- Waiting Activity -->
-    <string name="txtv_wait">Esperando...</string>
-    <string name="txtv_qscore">Puntaje Actual: X</string>
-    <!-- Question Activity -->
-    <string name="txtv_qnumb">Pregunta X</string>
-    <string name="txtv_qdef">Aca va la Pregunta</string>
-    <string name="btn_qans1">Answer 1</string>
-    <string name="btn_qans2">Answer 2</string>
-    <string name="btn_qans3">Answer 3</string>
-    <string name="btn_qans4">Answer 4</string>
-    <!-- End Activity -->
-    <string name="txtv_endgame">Fin del Juego</string>
-    <string name="txtv_endranking">Terminaste X°</string>
-    <string name="txtv_endscore">Puntaje Final: X</string>
-    <string name="btn_endcontinue">Continuar</string>
+    <string name="ptxt_login">Username</string>
+    <string name="ptxt_password">Password</string>
+    <string name="ptxt_ip" translatable="false">0.0.0.0</string>
+    <string name="txtv_title" translatable="false">UncoHoot</string>
+    <string name="btn_ranking" translatable="false">Ranking</string>
+    <string name="btn_login">Log in</string>
+    <string name="btn_register">Sign up</string>
+    <string name="btn_exit">Exit</string>
+    <string name="txtv_iphelp">Game\'s IP Address</string>
+    <string name="btn_qans1" translatable="false">Ans1</string>
+    <string name="btn_qans2" translatable="false">Ans2</string>
+    <string name="btn_qans3" translatable="false">Ans3</string>
+    <string name="btn_qans4" translatable="false">Ans4</string>
+    <string name="txtv_qdef" translatable="false">Question</string>
+    <string name="btn_connect">Connect</string>
+    <string name="btn_config">Settings</string>
+    <string name="ptxt_password_r">Repeat password</string>
+    <string name="btn_create">Create user</string>
+    <string name="txtv_music">Music</string>
+    <string name="btn_music_true">Music ON</string>
+    <string name="btn_music_false">Music OFF</string>
+    <string name="txtv_lang">Language</string>
+    <string name="btn_lang">Change to Spanish</string>
+    <string name="txtv_wait">Waiting...</string>
+    <string name="txtv_qscore">Current Score: </string>
+    <string name="txtv_qnumb">Question N° </string>
+    <string name="txtv_endgame">Game over</string>
+    <string name="txtv_endranking">You finished:</string>
+    <string name="txtv_endscore">Final score:</string>
+    <string name="btn_endcontinue">Continue</string>
 </resources>

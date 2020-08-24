@@ -12,14 +12,15 @@ public class GameServer {
     private ArrayList<ServerConnector> players;
     private ArrayList<String> playerNames, playersRanked;
     private ArrayList<Integer> playerScoresAux;
+    private ArrayList<Boolean> playerLangsSpanish;
     private PlayerReceiver receiver;
     private Clock clock;
     private int[] playerScores;
 
-    public GameServer(String[][] questions) {
+    public GameServer(String[][] questions, String[][] questionsEnglish) {
         this.questions = new Question[questions.length];
         for (int i = 0; i < questions.length; i++) {
-            this.questions[i] = new Question(questions[i]);
+            this.questions[i] = new Question(questions[i], questionsEnglish[i]);
         }
         controller = new ServerController();
         clock = new Clock();
@@ -33,6 +34,7 @@ public class GameServer {
         players = new ArrayList<>();
         playerNames = new ArrayList<>();
         playerScoresAux = new ArrayList<>();
+        playerLangsSpanish = new ArrayList<>();
         controller.startServer();
         new Thread(receiver, "PlayerReceiver").start();
     }
@@ -54,9 +56,15 @@ public class GameServer {
 
         System.out.println("Enviando preguntas...");
 
-        players.forEach((player) -> {
-            player.makeRequest(questions[questionRound].toRequest());
-        });
+        for (int i = 0; i < players.size(); i++) {
+            String question;
+            if (playerLangsSpanish.get(i)) {
+                question = questions[questionRound].toRequest();
+            } else {
+                question = questions[questionRound].toRequestEnglish();
+            }
+            players.get(i).makeRequest(question);
+        }
 
         Clock.sleep(1);
 
@@ -142,7 +150,15 @@ public class GameServer {
         }
 
         int score = 0;
-        if (questions[idQuestion].isRightAns(answer)) {
+        boolean isRight;
+
+        if (playerLangsSpanish.get(indice)) {
+            isRight = questions[idQuestion].isRightAns(answer);
+        } else {
+            isRight = questions[idQuestion].isRightAnsEnglish(answer);
+        }
+
+        if (isRight) {
             score = clock.getCountdownTime() * 100 / questions[idQuestion].time;
         }
         playerScores[indice] += score;
@@ -198,6 +214,8 @@ public class GameServer {
                     players.add(player);
                     playerNames.add(playerNameAux);
                     playerScoresAux.add(0);
+                    String resp = player.makeRequest("isSpanish:");
+                    playerLangsSpanish.add(resp.equals("true"));
                 }
             }
             playerScores = new int[players.size()];

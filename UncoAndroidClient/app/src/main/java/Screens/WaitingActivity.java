@@ -26,7 +26,8 @@ public class WaitingActivity extends AppCompatActivity {
 
         gameState = GameState.getGameObject();
         qScore = (TextView) findViewById(R.id.txtv_wait_qscore);
-        qScore.setText("Puntaje Actual: " + gameState.playerScore);
+        String score = qScore.getText().toString() + " " + gameState.playerScore;
+        qScore.setText(score);
 
         waitingThread = new WaitingThread(this);
         gameState.setWaitingThread(waitingThread);

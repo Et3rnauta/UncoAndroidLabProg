@@ -1,10 +1,14 @@
 package Screens;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +16,8 @@ import android.widget.EditText;
 import com.example.uncoandroidclient.R;
 
 import Components.MusicState;
+import java.util.Locale;
+
 import Logic.GameState;
 
 public class StartActivity extends AppCompatActivity {
@@ -19,11 +25,13 @@ public class StartActivity extends AppCompatActivity {
     EditText Username, Password;
     Button Login, Register, Exit;
 
+    boolean isScreenSpanish;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
+        // Configurar el lenguaje de la app
         Username = (EditText) findViewById(R.id.ptxt_start_username);
         Password = (EditText) findViewById(R.id.ptxt_start_password);
         Login = (Button) findViewById(R.id.btn_start_login);
@@ -58,6 +66,7 @@ public class StartActivity extends AppCompatActivity {
             mediaPlayer.start();
             MusicState.getMusicObject().setMediaPlayer(mediaPlayer);
         }
+        isScreenSpanish = GameState.isSpanish;
     }
 
     /**
@@ -84,5 +93,15 @@ public class StartActivity extends AppCompatActivity {
      * Ejecución de Botón de Salir
      */
     private void btnExit(View view) {
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(isScreenSpanish !=  GameState.isSpanish){
+            finish();
+            startActivity(getIntent());
+        }
     }
 }

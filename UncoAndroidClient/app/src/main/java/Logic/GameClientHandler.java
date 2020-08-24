@@ -41,6 +41,9 @@ public class GameClientHandler extends ConnectionRequestHandler {
             case "setName":
                 gameState.playerName = function.get(1);
                 break;
+            case "isSpanish":
+                msgReturn = "" + GameState.isSpanish;
+                break;
             default:
                 msgReturn = "ERROR";
                 break;

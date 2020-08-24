@@ -10,9 +10,9 @@ public class TestGame {
     static GameServer game;
 
     public static void main(String[] args) {
-        
-        game = new GameServer(conjuntoPreguntas1());
-        
+
+        game = new GameServer(conjuntoPreguntas1(), conjuntoPreguntasIngles1());
+
         System.out.println("Abriendo Sala sobre la IP: 192.168.0.175");
         game.openRoom();
 
@@ -37,11 +37,23 @@ public class TestGame {
         //[quest][rightAns][ans2][ans3][ans4][time]        
         String[][] testSet = {
             {"¿Cuanto es 2 + 2?", "4", "3", "6", "5", "10"},
-            {"¿Cual es la capital de Argentina?", "Buenos Aires", "Neuquen", 
+            {"¿Cual es la capital de Argentina?", "Buenos Aires", "Neuquen",
                 "Cipolletti", "Vaca Muerta", "10"},
-            {"¿Cual es la mejor materia en la FAI?","Laboratorio de Programacion", 
+            {"¿Cual es la mejor materia en la FAI?", "Laboratorio de Programacion",
                 "Diseño de Base de Datos", "Analisis de Algoritmos", "Introduccion a la Computacion", "10"}
-        };        
+        };
+        return testSet;
+    }
+
+    public static String[][] conjuntoPreguntasIngles1() {
+        //[quest][rightAns][ans2][ans3][ans4]        
+        String[][] testSet = {
+            {"How much is 2 + 2?", "4", "3", "6", "5", "10"},
+            {"What's the capital of Argentina?", "Buenos Aires", "Neuquen",
+                "Cipolletti", "Vaca Muerta", "10"},
+            {"Which is the best class on FAI?", "Laboratorio de Programacion",
+                "Diseño de Base de Datos", "Analisis de Algoritmos", "Introduccion a la Computacion", "10"}
+        };
         return testSet;
     }
 
