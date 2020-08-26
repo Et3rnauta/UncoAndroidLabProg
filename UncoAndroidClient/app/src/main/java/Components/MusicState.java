@@ -7,7 +7,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MusicState {
 
     public static MusicState musicObject;
-    public static boolean isPlaying = false;
+    private static boolean isPlaying = false;
 
     public MediaPlayer mediaPlayer;
 

@@ -31,4 +31,6 @@
     <string name="txtv_endranking">You finished:</string>
     <string name="txtv_endscore">Final score:</string>
     <string name="btn_endcontinue">Continue</string>
+    <string name="txtv_nameranking">Name</string>
+    <string name="txtv_scoreranking">Score</string>
 </resources>

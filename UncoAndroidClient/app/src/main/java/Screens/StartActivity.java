@@ -1,22 +1,19 @@
 package Screens;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.uncoandroidclient.R;
 
+import Components.DatabaseState;
 import Components.MusicState;
-import java.util.Locale;
 
 import Logic.GameState;
 
@@ -73,12 +70,22 @@ public class StartActivity extends AppCompatActivity {
      * Ejecución de Botón de Login
      */
     private void btnLogin(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        String user = Username.getText().toString(),
+                pass = Password.getText().toString();
 
-        //TODO: CAMBIAR
-        GameState.playerName = "Guido";
-
-        startActivity(intent);
+        if (user.equals("")) {
+            Toast.makeText(getApplicationContext(), "Ingrese un Nombre de Usuario", Toast.LENGTH_SHORT).show();
+        } else if (pass.equals("")) {
+            Toast.makeText(getApplicationContext(), "Ingrese una Contraseña", Toast.LENGTH_SHORT).show();
+        } else if (!DatabaseState.getDatabaseObject(this).checkLogIn(user, pass)) {
+            Toast.makeText(getApplicationContext(), "El Nombre o la Contraseña son incorrectos", Toast.LENGTH_SHORT).show();
+        } else {
+            GameState.playerName = user;
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            Username.setText("");
+            Password.setText("");
+        }
     }
 
     /**
@@ -99,7 +106,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if(isScreenSpanish !=  GameState.isSpanish){
+        if (isScreenSpanish != GameState.isSpanish) {
             finish();
             startActivity(getIntent());
         }

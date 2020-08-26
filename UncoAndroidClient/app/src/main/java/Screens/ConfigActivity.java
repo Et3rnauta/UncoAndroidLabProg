@@ -31,6 +31,12 @@ public class ConfigActivity extends AppCompatActivity {
 
         musicObj = MusicState.getMusicObject();
         Music = (Button) findViewById(R.id.btn_config_music);
+        //FIXME: Test
+        if (MusicState.isPlaying()) {
+            Music.setText(R.string.btn_music_true);
+        } else {
+            Music.setText(R.string.btn_music_false);
+        }
         Music.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

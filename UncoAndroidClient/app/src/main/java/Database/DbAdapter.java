@@ -5,7 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 public class DbAdapter {
+
     DbHelper myhelper;
 
     public DbAdapter(Context context) {
@@ -84,6 +87,26 @@ public class DbAdapter {
                 null, null, null, null);
         check = cursor.moveToNext();
         return check;
+    }
+
+    /**
+     * Devuelve una lista de jugadores con sus respectivos puntajes Maximos
+     *
+     * @return ArrayList de Pares {Nombre, MaxScore}
+     */
+    public ArrayList<String[]> getRankData() {
+        String[] columns = {DbHelper.NAME, DbHelper.MAXSCORE};
+        Cursor cursor = myhelper.getWritableDatabase().query(DbHelper.TABLE_NAME,
+                columns,
+                null, null, null, null, null);
+        ArrayList<String[]> matrix = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            String[] element = new String[2];
+            element[0] = cursor.getString(cursor.getColumnIndex(DbHelper.NAME));
+            element[1] = Integer.toString(cursor.getInt(cursor.getColumnIndex(DbHelper.MAXSCORE)));
+            matrix.add(element);
+        }
+        return matrix;
     }
 
     /**

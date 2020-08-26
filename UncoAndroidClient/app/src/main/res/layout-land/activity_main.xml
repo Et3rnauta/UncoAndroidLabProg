@@ -60,10 +60,10 @@
 
     <Button
         android:id="@+id/btn_main_config"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/btn_config"
         app:layout_constraintStart_toEndOf="@+id/btn_main_ranking"
@@ -73,19 +73,16 @@
         android:id="@+id/btn_main_exit"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="@string/btn_exit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_main_config"
         app:layout_constraintTop_toBottomOf="@+id/ptxt_main_ip" />
 
     <Button
         android:id="@+id/btn_main_connect"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
@@ -96,10 +93,10 @@
 
     <Button
         android:id="@+id/btn_main_ranking"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/btn_ranking"
         app:layout_constraintStart_toEndOf="@+id/btn_main_connect"

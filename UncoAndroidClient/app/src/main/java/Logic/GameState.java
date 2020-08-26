@@ -21,7 +21,7 @@ public class GameState {
     private QuestionThread questionThread;
     private WaitingThread waitingThread;
 
-    public GameState() {
+    private GameState() {
         this.qDefinition = "";
         this.qNumber = 0;
         this.answers = new String[4];
@@ -31,10 +31,9 @@ public class GameState {
         this.rankPos = "0";
     }
 
-    public static void resetGameObject() {
-        game = new GameState();
-    }
-
+    /**
+     * Obtiene el objeto Singleton
+     */
     public static GameState getGameObject() {
         if (game == null) {
             game = new GameState();
@@ -42,24 +41,49 @@ public class GameState {
         return game;
     }
 
-    public static void changeLanguage() {
-        isSpanish = !isSpanish;
+    /**
+     * Reinicia los valores del juego
+     */
+    public static void resetGameObject() {
+        game = new GameState();
     }
 
+    /**
+     * Se conecta al juego
+     *
+     * @param ipAddress la direccion Ip del Server del Juego
+     * @return true si se pudo conectar, false si hubo error
+     */
     public boolean connect(String ipAddress) {
         connector = new ClientConnector(ipAddress);
         return connector.startConnection(new GameClientHandler());
     }
 
+    /**
+     * Envia la respuesta seleccionada
+     *
+     * @param index el numero de respuesta seleccionada
+     */
     public void sendAnswer(Integer index) {
         String sendAnswer = "sendAnswer:(" + playerName + ")(" + qNumber + ")(" + answers[index] + ")";
         playerScore += Integer.decode(connector.makeRequest(sendAnswer));
         endQuestion();
     }
 
+    /**
+     * Obtiene la posicion en el ranking de la partida
+     */
     public String getRankPos() {
         return rankPos;
     }
+
+    /**
+     * Modifica el lenguaje: si es Español a Ingles o viceversa
+     */
+    public static void changeLanguage() {
+        isSpanish = !isSpanish;
+    }
+
 
     //Manejo de Threads de Control de Pantallas
     public void setQuestionThread(QuestionThread questionThread) {
