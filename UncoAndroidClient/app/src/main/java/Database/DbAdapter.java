@@ -98,7 +98,7 @@ public class DbAdapter {
         String[] columns = {DbHelper.NAME, DbHelper.MAXSCORE};
         Cursor cursor = myhelper.getWritableDatabase().query(DbHelper.TABLE_NAME,
                 columns,
-                null, null, null, null, null);
+                null, null, null, null, DbHelper.MAXSCORE + " DESC");
         ArrayList<String[]> matrix = new ArrayList<>();
         while (cursor.moveToNext()) {
             String[] element = new String[2];

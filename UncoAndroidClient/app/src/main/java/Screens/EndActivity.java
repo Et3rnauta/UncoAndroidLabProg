@@ -10,11 +10,12 @@ import android.widget.TextView;
 
 import com.example.uncoandroidclient.R;
 
+import Components.DatabaseState;
 import Logic.GameState;
 
 public class EndActivity extends AppCompatActivity {
 
-    TextView ranking, score;
+    TextView ranking, score, maxscore;
     Button btnContinue;
 
     @Override
@@ -35,6 +36,11 @@ public class EndActivity extends AppCompatActivity {
                 startMainActivity();
             }
         });
+        maxscore = (TextView) findViewById(R.id.txtv_end_maxscore);
+        int newScore = GameState.getGameObject().getScore();
+        if (!DatabaseState.getDatabaseObject(this).newMaxScore(GameState.playerName, newScore)) {
+            maxscore.setText("");
+        }
     }
 
     private void startMainActivity() {

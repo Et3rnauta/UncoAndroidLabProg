@@ -76,7 +76,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();

@@ -48,6 +48,10 @@ public class GameState {
         game = new GameState();
     }
 
+    public int getScore() {
+        return this.playerScore;
+    }
+
     /**
      * Se conecta al juego
      *
