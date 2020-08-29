@@ -1,4 +1,4 @@
-package Screens;
+package screens;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +16,8 @@ import java.util.Locale;
 
 import com.example.uncoandroidclient.R;
 
-import Components.MusicState;
-import Logic.GameState;
+import components.MusicState;
+import logic.GameState;
 
 public class ConfigActivity extends AppCompatActivity {
 
@@ -31,7 +31,6 @@ public class ConfigActivity extends AppCompatActivity {
 
         musicObj = MusicState.getMusicObject();
         Music = (Button) findViewById(R.id.btn_config_music);
-        //FIXME: Test
         if (MusicState.isPlaying()) {
             Music.setText(R.string.btn_music_true);
         } else {

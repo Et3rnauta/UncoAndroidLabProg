@@ -1,4 +1,4 @@
-package Screens;
+package screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,9 +12,7 @@ import android.widget.Toast;
 
 import com.example.uncoandroidclient.R;
 
-import Conexion.ClientConnector;
-import Conexion.ConnectionRequestHandler;
-import Logic.GameState;
+import logic.GameState;
 
 public class MainActivity extends AppCompatActivity {
 

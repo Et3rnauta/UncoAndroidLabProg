@@ -1,4 +1,4 @@
-package Database;
+package database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -118,7 +118,6 @@ public class DbAdapter {
      * @return true si el newScore es mayor
      */
     private boolean isScoreMax(String name, int newScore, SQLiteDatabase db) {
-        //TODO: test
         int valor = -1;
         String[] columns = {DbHelper.NAME, DbHelper.MAXSCORE};
         Cursor cursor = db.query(DbHelper.TABLE_NAME,

@@ -1,8 +1,8 @@
-package Logic;
+package logic;
 
 import java.util.ArrayList;
 
-import Conexion.ConnectionRequestHandler;
+import conexion.ConnectionRequestHandler;
 
 public class GameClientHandler extends ConnectionRequestHandler {
 

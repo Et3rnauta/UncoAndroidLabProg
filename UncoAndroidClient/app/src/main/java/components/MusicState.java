@@ -1,8 +1,6 @@
-package Components;
+package components;
 
 import android.media.MediaPlayer;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MusicState {
 

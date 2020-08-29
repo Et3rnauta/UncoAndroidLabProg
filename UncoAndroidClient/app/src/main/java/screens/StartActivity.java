@@ -1,4 +1,4 @@
-package Screens;
+package screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 import com.example.uncoandroidclient.R;
 
-import Components.DatabaseState;
-import Components.MusicState;
+import components.DatabaseState;
+import components.MusicState;
 
-import Logic.GameState;
+import logic.GameState;
 
 public class StartActivity extends AppCompatActivity {
 

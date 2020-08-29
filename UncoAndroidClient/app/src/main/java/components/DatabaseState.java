@@ -1,11 +1,11 @@
-package Components;
+package components;
 
 import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import Database.DbAdapter;
+import database.DbAdapter;
 
 public class DatabaseState {
 

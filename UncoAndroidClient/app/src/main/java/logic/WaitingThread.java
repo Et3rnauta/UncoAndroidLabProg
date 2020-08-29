@@ -1,6 +1,6 @@
-package Logic;
+package logic;
 
-import Screens.WaitingActivity;
+import screens.WaitingActivity;
 
 public class WaitingThread implements Runnable {
 

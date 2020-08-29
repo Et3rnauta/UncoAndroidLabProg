@@ -1,4 +1,4 @@
-package Conexion;
+package conexion;
 
 // @author guido
 import java.io.BufferedReader;

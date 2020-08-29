@@ -1,4 +1,4 @@
-package Screens;
+package screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.example.uncoandroidclient.R;
 
-import Logic.GameState;
-import Logic.QuestionThread;
+import logic.GameState;
+import logic.QuestionThread;
 
 public class QuestionActivity extends AppCompatActivity {
 

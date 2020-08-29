@@ -1,6 +1,6 @@
-package Logic;
+package logic;
 
-import Conexion.ClientConnector;
+import conexion.ClientConnector;
 
 public class GameState {
 

@@ -1,4 +1,4 @@
-package Screens;
+package screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,10 +8,8 @@ import android.widget.TextView;
 
 import com.example.uncoandroidclient.R;
 
-import org.w3c.dom.Text;
-
-import Logic.GameState;
-import Logic.WaitingThread;
+import logic.GameState;
+import logic.WaitingThread;
 
 public class WaitingActivity extends AppCompatActivity {
 

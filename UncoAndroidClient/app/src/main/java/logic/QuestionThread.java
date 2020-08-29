@@ -1,6 +1,6 @@
-package Logic;
+package logic;
 
-import Screens.QuestionActivity;
+import screens.QuestionActivity;
 
 public class QuestionThread implements Runnable {
 

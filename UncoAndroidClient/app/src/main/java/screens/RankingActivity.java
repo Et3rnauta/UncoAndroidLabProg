@@ -1,4 +1,4 @@
-package Screens;
+package screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,8 +11,8 @@ import com.example.uncoandroidclient.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import Components.DatabaseState;
-import Database.RecyclerViewAdapter;
+import components.DatabaseState;
+import database.RecyclerViewAdapter;
 
 public class RankingActivity extends AppCompatActivity {
 
