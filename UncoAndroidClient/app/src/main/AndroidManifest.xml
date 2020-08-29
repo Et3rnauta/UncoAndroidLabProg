@@ -12,15 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="Screens.EndActivity"></activity>
-        <activity android:name="Screens.QuestionActivity" />
-        <activity android:name="Screens.WaitingActivity" />
-        <activity android:name="Screens.ConfigActivity"
+        <activity android:name="screens.EndActivity"></activity>
+        <activity android:name="screens.QuestionActivity" />
+        <activity android:name="screens.WaitingActivity" />
+        <activity android:name="screens.ConfigActivity"
             android:configChanges="locale|orientation"/>
-        <activity android:name="Screens.RankingActivity" />
-        <activity android:name="Screens.MainActivity" />
-        <activity android:name="Screens.RegisterActivity" />
-        <activity android:name="Screens.StartActivity">
+        <activity android:name="screens.RankingActivity" />
+        <activity android:name="screens.MainActivity" />
+        <activity android:name="screens.RegisterActivity" />
+        <activity android:name="screens.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
