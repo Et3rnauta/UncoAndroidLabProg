@@ -27,7 +27,7 @@ public class WaitingThread implements Runnable {
         }
     }
 
-    public void isLast(){
+    public void setLast(){
         isLast = true;
     }
 

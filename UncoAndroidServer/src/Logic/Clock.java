@@ -4,6 +4,7 @@ package Logic;
 public class Clock {
 
     private static final int TIME = 1000;
+    private static CountdownTimer countdownTimer;
 
     /**
      * Wait for received seconds
@@ -19,33 +20,24 @@ public class Clock {
     }
 
     /**
-     * Wait for received seconds and prints the remaining time every second
+     * Sets a Thread that waits and prints the remaining time every second
      *
      * @param seconds time to wait
+     * @param printActive if true, the clock prints the remaining time every
+     * second
      */
-    public static void sleepPrint(int seconds) {
-        if (seconds > 0) {
-            while (seconds > 0) {
-                try {
-                    Thread.sleep(TIME);
-                } catch (InterruptedException ex) {
-                    System.out.println(ex);
-                }
-                seconds--;
-                System.out.println(seconds);
-            }
-        }
-    }
-
-    private CountdownTimer countdownTimer;
-    
-    public void startCountdown(int seconds, boolean printActive) {
+    public static void startCountdown(int seconds, boolean printActive) {
         countdownTimer = new CountdownTimer(seconds, printActive);
         new Thread(countdownTimer, "countdownTimer").start();
     }
 
-    public int getCountdownTime() {
-        if(countdownTimer == null){
+    /**
+     * If there is a countdownTimer set, returns the remaining time
+     * 
+     * @return the time left on the countdown
+     */
+    public static int getCountdownTime() {
+        if (countdownTimer == null) {
             return 0;
         }
         return countdownTimer.seconds;
@@ -54,7 +46,8 @@ public class Clock {
     private static class CountdownTimer implements Runnable {
 
         int seconds;
-        boolean printActive;
+        
+        private boolean printActive;
 
         public CountdownTimer(int seconds, boolean printActive) {
             this.seconds = seconds;

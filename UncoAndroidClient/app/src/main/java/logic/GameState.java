@@ -22,6 +22,7 @@ public class GameState {
     private WaitingThread waitingThread;
 
     private GameState() {
+        //TODO: Cambiar en diagrama los metodos estaticos
         this.qDefinition = "";
         this.qNumber = 0;
         this.answers = new String[4];
@@ -113,7 +114,7 @@ public class GameState {
 
     public void endGame(String rankPos) {
         this.rankPos = rankPos;
-        waitingThread.isLast();
+        waitingThread.setLast();
         waitingThread.wake();
     }
 }

@@ -14,7 +14,6 @@ public class GameServer {
     private ArrayList<Integer> playerScoresAux;
     private ArrayList<Boolean> playerLangsSpanish;
     private PlayerReceiver receiver;
-    private Clock clock;
     private int[] playerScores;
 
     public GameServer(String[][] questions, String[][] questionsEnglish) {
@@ -23,7 +22,6 @@ public class GameServer {
             this.questions[i] = new Question(questions[i], questionsEnglish[i]);
         }
         controller = new ServerController();
-        clock = new Clock();
     }
 
     /**
@@ -75,7 +73,7 @@ public class GameServer {
             player.makeRequest(startQuestion);
         });
 
-        clock.startCountdown(questions[questionRound].time, true);
+        Clock.startCountdown(questions[questionRound].time, true);
         Clock.sleep(questions[questionRound].time);
 
         System.out.println("Fin de la Pregunta");
@@ -159,7 +157,7 @@ public class GameServer {
         }
 
         if (isRight) {
-            score = clock.getCountdownTime() * 100 / questions[idQuestion].time;
+            score = Clock.getCountdownTime() * 100 / questions[idQuestion].time;
         }
         playerScores[indice] += score;
 
@@ -185,7 +183,7 @@ public class GameServer {
     private class PlayerReceiver implements Runnable {
 
         GameServer game;
-        boolean isOpen = true;
+        private boolean isOpen = true;
 
         public PlayerReceiver(GameServer game) {
             this.game = game;
