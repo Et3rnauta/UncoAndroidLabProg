@@ -55,13 +55,7 @@ public class GameServer {
         System.out.println("Enviando preguntas...");
 
         for (int i = 0; i < players.size(); i++) {
-            String question;
-            if (playerLangsSpanish.get(i)) {
-                question = questions[questionRound].toRequest();
-            } else {
-                question = questions[questionRound].toRequestEnglish();
-            }
-            players.get(i).makeRequest(question);
+            players.get(i).makeRequest(questions[questionRound].toRequest(playerLangsSpanish.get(i)));
         }
 
         Clock.sleep(1);
@@ -148,15 +142,8 @@ public class GameServer {
         }
 
         int score = 0;
-        boolean isRight;
 
-        if (playerLangsSpanish.get(indice)) {
-            isRight = questions[idQuestion].isRightAns(answer);
-        } else {
-            isRight = questions[idQuestion].isRightAnsEnglish(answer);
-        }
-
-        if (isRight) {
+        if (questions[idQuestion].isRightAns(answer, playerLangsSpanish.get(indice))) {
             score = Clock.getCountdownTime() * 100 / questions[idQuestion].time;
         }
         playerScores[indice] += score;
