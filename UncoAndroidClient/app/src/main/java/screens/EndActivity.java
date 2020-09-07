@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.uncoandroidclient.R;
 
 import components.DatabaseState;
-import logic.GameState;
+import logica.GameState;
 
 public class EndActivity extends AppCompatActivity {
 

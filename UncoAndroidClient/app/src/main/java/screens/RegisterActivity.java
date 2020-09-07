@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.example.uncoandroidclient.R;
 
 import components.DatabaseState;
-import logic.GameState;
+import logica.GameState;
 
 public class RegisterActivity extends AppCompatActivity {
 

@@ -15,7 +15,7 @@ import com.example.uncoandroidclient.R;
 import components.DatabaseState;
 import components.MusicState;
 
-import logic.GameState;
+import logica.GameState;
 
 public class StartActivity extends AppCompatActivity {
 

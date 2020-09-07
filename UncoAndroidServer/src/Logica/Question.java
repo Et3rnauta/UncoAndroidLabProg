@@ -1,4 +1,4 @@
-package Logic;
+package Logica;
 
 // @author guido
 import java.util.ArrayList;

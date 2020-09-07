@@ -1,8 +1,8 @@
 package Main;
 
 // @author guido
-import Logic.Clock;
-import Logic.GameServer;
+import Logica.Clock;
+import Logica.GameServer;
 
 public class TestGame {
 

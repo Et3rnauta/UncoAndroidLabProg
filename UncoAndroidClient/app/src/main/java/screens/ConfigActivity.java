@@ -17,7 +17,7 @@ import java.util.Locale;
 import com.example.uncoandroidclient.R;
 
 import components.MusicState;
-import logic.GameState;
+import logica.GameState;
 
 public class ConfigActivity extends AppCompatActivity {
 

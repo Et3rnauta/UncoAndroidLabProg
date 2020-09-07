@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.example.uncoandroidclient.R;
 
-import logic.GameState;
-import logic.WaitingThread;
+import logica.GameState;
+import logica.WaitingThread;
 
 public class WaitingActivity extends AppCompatActivity {
 

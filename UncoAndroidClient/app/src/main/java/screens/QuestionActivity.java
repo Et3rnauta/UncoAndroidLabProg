@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.example.uncoandroidclient.R;
 
-import logic.GameState;
-import logic.QuestionThread;
+import logica.GameState;
+import logica.QuestionThread;
 
 public class QuestionActivity extends AppCompatActivity {
 

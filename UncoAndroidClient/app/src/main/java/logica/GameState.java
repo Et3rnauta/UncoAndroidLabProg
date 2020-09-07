@@ -1,4 +1,4 @@
-package logic;
+package logica;
 
 import conexion.ClientConnector;
 
