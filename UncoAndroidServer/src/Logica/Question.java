@@ -32,7 +32,7 @@ public class Question {
     }
 
     /**
-     * Transforma la Pregunta en una consulta con formato String
+     * Transforma la Pregunta en una solicitud con formato String
      * 
      * @param isSpanish idioma del jugador
      */

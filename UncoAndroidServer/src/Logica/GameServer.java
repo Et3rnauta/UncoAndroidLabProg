@@ -11,7 +11,6 @@ public class GameServer {
     private ServerController controller;
     private ArrayList<ServerConnector> players;
     private ArrayList<String> playerNames, playersRanked;
-    private ArrayList<Integer> playerScoresAux;
     private ArrayList<Boolean> playerLangsSpanish;
     private PlayerReceiver receiver;
     private int[] playerScores;
@@ -31,7 +30,6 @@ public class GameServer {
         receiver = new PlayerReceiver(this);
         players = new ArrayList<>();
         playerNames = new ArrayList<>();
-        playerScoresAux = new ArrayList<>();
         playerLangsSpanish = new ArrayList<>();
         controller.startServer();
         new Thread(receiver, "PlayerReceiver").start();
@@ -198,7 +196,6 @@ public class GameServer {
 
                     players.add(player);
                     playerNames.add(playerNameAux);
-                    playerScoresAux.add(0);
                     String resp = player.makeRequest("isSpanish:");
                     playerLangsSpanish.add(resp.equals("true"));
                 }
