@@ -30,8 +30,7 @@ public class TestClient implements Runnable {
             }
         } catch (InterruptedException ex) {
         }
-
-        connector.endConnection();
+               
     }
 
     public String getAnswer() {

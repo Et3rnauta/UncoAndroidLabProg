@@ -30,4 +30,8 @@
     <string name="txtv_endranking">Terminaste:</string>
     <string name="txtv_endscore">Puntaje Final: </string>
     <string name="btn_endcontinue">Continuar</string>
+    <string name="txtv_newmaxscore">NUEVO PUNTAJE MAXIMO</string>
+    <!-- Ranking Activity -->
+    <string name="txtv_nameranking">Nombre</string>
+    <string name="txtv_scoreranking">Puntaje</string>
 </resources>

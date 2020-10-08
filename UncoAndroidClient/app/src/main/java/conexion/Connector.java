@@ -1,4 +1,4 @@
-package Conexion;
+package conexion;
 
 // @author guido
 import java.io.BufferedReader;
@@ -13,8 +13,6 @@ abstract class Connector {
     protected BufferedReader inputStream;
     protected PrintWriter outputStream;
     protected MessageListener listener;
-    
-    private boolean isConnected;
 
     protected static final String STARTCONNECTION = "/sv_start/",//This message should be first sent and received by the Connector
             ENDCONNECTION = "/sv_close/";//This message should be last sent and received by the Connection
@@ -51,7 +49,6 @@ abstract class Connector {
         }
 
         new Thread(listener, "MessageListener").start();
-        isConnected = true;
         return true;
     }
 
@@ -74,17 +71,14 @@ abstract class Connector {
      * error.
      */
     public boolean endConnection() {
-        if (isConnected) {
-            listener.isListening = false;
-            sendMsg(ENDCONNECTION);
-            outputStream.close();
-            try {
-                inputStream.close();
-                socket.close();
-                isConnected = false;
-            } catch (IOException e) {
-                return false;
-            }
+        listener.isListening = false;
+        sendMsg(ENDCONNECTION);
+        outputStream.close();
+        try {
+            inputStream.close();
+            socket.close();
+        } catch (IOException e) {
+            return false;
         }
         return true;
     }
@@ -99,11 +93,8 @@ abstract class Connector {
     }
 
     /**
-     * Recieves a Message (waiting if the opposing Connector hasn't sent it
-     * yet).
-     *
-     * @return null if the opposing Connector has closed the connection or there
-     * is an error in the reception
+     * Recieves a Message (waiting if the opposing Connector hasn't sent it yet).
+     * @return null if the opposing Connector has closed the connection or there is an error in the reception
      */
     String recvMsg() {
         String message;

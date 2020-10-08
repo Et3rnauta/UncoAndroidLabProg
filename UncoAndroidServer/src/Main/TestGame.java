@@ -1,19 +1,20 @@
 package Main;
 
 // @author guido
-import Conexion.ServerController;
-import Logic.Clock;
-import Logic.GameServer;
+import Logica.Clock;
+import Logica.GameServer;
 
 public class TestGame {
 
-    static GameServer game;
+    private static GameServer game;
+//    private static String IPADDRESS = "*Ingrese la direccion IPv4*";
+    private static String IPADDRESS = "192.168.0.175";
 
     public static void main(String[] args) {
 
         game = new GameServer(conjuntoPreguntas1(), conjuntoPreguntasIngles1());
 
-        System.out.println("Abriendo Sala sobre la IP: 192.168.0.175");
+        System.out.println("Abriendo Sala sobre la IP: " + IPADDRESS);
         game.openRoom();
 
         System.out.println("Esperando jugadores, presione \"Enter\" para comenzar el Juego.");

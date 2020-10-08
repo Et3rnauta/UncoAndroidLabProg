@@ -17,7 +17,7 @@ public class ConexionTest {
     static TestServer[] servers;
     static TestClient[] clients;
 
-    static final int NUMCLIENTS = 100,
+    static final int NUMCLIENTS = 2,
             PORT = 9999;
 
     @BeforeClass
@@ -41,7 +41,7 @@ public class ConexionTest {
             System.out.println("Creando Clientes");
             for (int i = 0; i < NUMCLIENTS; i++) {
                 clients[i] = new TestClient(new ClientConnector("localhost", PORT), "client-" + i);
-                new Thread(clients[i]).start();
+                new Thread(clients[i], "Cliente").start();
                 Thread.sleep(100);
             }
             System.out.println("Esperando envio de mensajes");
@@ -62,7 +62,7 @@ public class ConexionTest {
         public void run() {
             for (int i = 0; i < NUMCLIENTS; i++) {
                 servers[i] = new TestServer(controller.recieveClient(), "server-" + i);
-                new Thread(servers[i]).start();
+                new Thread(servers[i], "Server").start();
             }
         }
     }

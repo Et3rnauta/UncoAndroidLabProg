@@ -1,5 +1,4 @@
-package Conexion;
-
+package conexion;
 // @author guido
 import java.util.ArrayList;
 
@@ -26,9 +25,9 @@ class MessageListener implements Runnable {
 
         while (isListening) {
             message = connector.recvMsg();
-            
+
             if (message == null) {
-                connector.endConnection();
+                isListening = false;
             } else if (message.startsWith(REQUESTHEADER)) {
                 //If the message is a Request, it handles it and sends an answer
                 connector.sendMsg(ANSWERHEADER + handler.listenerHandle(message.substring(REQUESTHEADER.length())));
@@ -61,4 +60,3 @@ class MessageListener implements Runnable {
         }
     }
 }
-

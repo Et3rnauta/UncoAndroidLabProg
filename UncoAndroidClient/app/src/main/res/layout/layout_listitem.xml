@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:id="@+id/layout_item">
+
+    <FrameLayout
+        android:id="@+id/framL_textContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textv_nameItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre1"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textv_scoreItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="12000"
+            android:textSize="20sp" />
+
+    </FrameLayout>
+
+
+</RelativeLayout>
