@@ -83,6 +83,8 @@ public class ConfigActivity extends AppCompatActivity {
     }
 
     private void btnExit(View view) {
+        this.finishAffinity();
+        System.exit(0);
     }
 
     private void btnMusic(View view) {

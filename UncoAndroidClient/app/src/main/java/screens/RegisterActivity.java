@@ -48,7 +48,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void btnExit(View view) {
-
+        this.finishAffinity();
+        System.exit(0);
     }
 
     private void btnRegister(View view) {

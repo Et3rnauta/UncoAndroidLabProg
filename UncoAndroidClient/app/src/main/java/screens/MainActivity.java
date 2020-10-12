@@ -131,6 +131,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void btnExit(View view) {
+        this.finishAffinity();
+        System.exit(0);
     }
 
     private void btnRanking(View view) {

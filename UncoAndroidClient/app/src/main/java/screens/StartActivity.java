@@ -100,6 +100,8 @@ public class StartActivity extends AppCompatActivity {
      * Ejecución de Botón de Salir
      */
     private void btnExit(View view) {
+        this.finishAffinity();
+        System.exit(0);
     }
 
     @Override
